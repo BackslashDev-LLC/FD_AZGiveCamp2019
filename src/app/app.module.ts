@@ -1,5 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
+import { MatTableModule } from "@angular/material";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -12,6 +13,7 @@ import { WalkthroughComponent } from "./walkthrough/walkthrough.component";
 import { MovelistComponent } from "./movelist/movelist.component";
 import { HomeComponent } from "./home/home.component";
 import { ControlsModule } from "./controls/controls.module";
+import { FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -22,13 +24,15 @@ import { ControlsModule } from "./controls/controls.module";
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     ServiceWorkerModule.register("ngsw-worker.js", {
       enabled: environment.production
     }),
     BrowserAnimationsModule,
     AppMaterialModule,
-    ControlsModule
+    ControlsModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
