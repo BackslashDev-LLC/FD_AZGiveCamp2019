@@ -1,6 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { MatTableModule } from "@angular/material";
+import { AngularFireModule } from "@angular/fire"
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -13,14 +14,21 @@ import { WalkthroughComponent } from "./walkthrough/walkthrough.component";
 import { MovelistComponent } from "./movelist/movelist.component";
 import { HomeComponent } from "./home/home.component";
 import { ControlsModule } from "./controls/controls.module";
+
 import { FormsModule} from "@angular/forms";
+
+import { DetailComponent } from "./walkthrough/_/detail/detail.component";
+import { WalkthroughService } from "./services/walkthrough.services"
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     WalkthroughComponent,
     MovelistComponent,
-    HomeComponent
+    HomeComponent,
+    DetailComponent
   ],
   imports: [
     BrowserModule,
@@ -32,9 +40,12 @@ import { FormsModule} from "@angular/forms";
     BrowserAnimationsModule,
     AppMaterialModule,
     ControlsModule,
-    MatTableModule
+    MatTableModule,
+    AngularFireModule.initializeApp(environment.firebase, 'HelpCamp2019'),
+    AngularFirestoreModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ WalkthroughService],
+  bootstrap: [AppComponent],
+  entryComponents: [DetailComponent]
 })
 export class AppModule {}
