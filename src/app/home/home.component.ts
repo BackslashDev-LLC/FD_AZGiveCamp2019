@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
       res.forEach(action => {
         var data = action.payload.doc.data() as FullWalkthrough;
 
-        if (data.key.indexOf(this.searchTerm)) {
+        if (data.key.toLowerCase().indexOf(this.searchTerm.toLowerCase()) !== -1) {
           var client = Client.fromFirebase(action.payload.doc.id, data);
 
           walkthroughs.push(client);

@@ -45,7 +45,7 @@ import { AuthService } from "./auth/auth.service";
     ControlsModule,
     MatTableModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence(),
     AngularFireAuthModule
   ],
   providers: [WalkthroughService, AuthService],
