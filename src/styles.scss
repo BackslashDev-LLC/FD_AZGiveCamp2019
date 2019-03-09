@@ -31,7 +31,6 @@ body {
     margin-right: 0;
     font-family: $heading-font-family;
     font-weight: 400;
-    color: $accent-color-light;
   }
 
   p {
@@ -215,4 +214,8 @@ label.input-label {
   left: 0;
   background: rgba(33, 33, 33, 0.98);
   z-index: $zindex-modal-backdrop;
+}
+
+.mat-toolbar.mat-primary {
+  background-color: $primary-color;
 }

@@ -1,11 +1,11 @@
-<h1 mat-dialog-title>Furniture Detail</h1>
+<h1 mat-dialog-title>{{ item.name }} Detail</h1>
 <div mat-dialog-content>
   <div class="row">
     <div class="col-6">
-      <bsd-checkbox label="Overstuffed"></bsd-checkbox>
+      <bsd-checkbox [ngModel]="false" label="Overstuffed"></bsd-checkbox>
     </div>
     <div class="col-6">
-      <bsd-checkbox label="Extra Large"></bsd-checkbox>
+      <bsd-checkbox [ngModel]="false" label="Extra Large"></bsd-checkbox>
     </div>
   </div>
   <div class="row">

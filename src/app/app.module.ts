@@ -1,7 +1,8 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { MatTableModule } from "@angular/material";
-import { AngularFireModule } from "@angular/fire"
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireAuthModule } from "@angular/fire/auth";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -10,21 +11,23 @@ import { environment } from "../environments/environment";
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppMaterialModule } from "./app-material.module";
+import { LoginComponent } from "./login/login.component";
 import { WalkthroughComponent } from "./walkthrough/walkthrough.component";
 import { MovelistComponent } from "./movelist/movelist.component";
 import { HomeComponent } from "./home/home.component";
 import { ControlsModule } from "./controls/controls.module";
 
-import { FormsModule} from "@angular/forms";
+import { FormsModule } from "@angular/forms";
 
 import { DetailComponent } from "./walkthrough/_/detail/detail.component";
-import { WalkthroughService } from "./services/walkthrough.services"
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-
+import { WalkthroughService } from "./services/walkthrough.services";
+import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { AuthService } from "./auth/auth.service";
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
     WalkthroughComponent,
     MovelistComponent,
     HomeComponent,
@@ -42,9 +45,10 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     ControlsModule,
     MatTableModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
-  providers: [ WalkthroughService],
+  providers: [WalkthroughService, AuthService],
   bootstrap: [AppComponent],
   entryComponents: [DetailComponent]
 })

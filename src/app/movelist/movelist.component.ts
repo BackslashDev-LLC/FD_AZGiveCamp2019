@@ -21,7 +21,24 @@ export class MovelistComponent implements OnInit {
     }
   ];
 
+  rooms2 = [
+    {
+      name: "Mom Bedroom",
+      items: ["Queen bed sheets", "Queen comfortor", "Table lamp"]
+    },
+    {
+      name: "Girls (8 and 5) Bedroom",
+      items: ["Cute Girlie Rug", "Has Comforters"]
+    },
+    {
+      name: "Bathroom",
+      items: ["Towel for 4", "2 Shower Curtains"]
+    }
+  ];
+
   constructor() {}
 
   ngOnInit() {}
+
+  
 }
