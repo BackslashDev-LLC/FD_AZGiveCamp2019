@@ -1,0 +1,10 @@
+<div class="radioset" [class.required]="isRequired" [class.read-only]="isReadOnly">
+  <label class="label"
+         *ngIf="labelText">{{labelText}}
+  </label>
+  <label class="radio" *ngFor="let option of nameValueOptions">
+    <input class="radio__button" type="radio" name="{{name}}" [value]="option.value"
+           [(ngModel)]="value" (change)="valueChanged(option.value)" tabindex="0"/>
+    <span class="radio__label">{{option.text}}</span>
+  </label>
+</div>

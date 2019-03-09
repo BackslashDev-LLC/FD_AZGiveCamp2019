@@ -1,0 +1,65 @@
+@import '../../../assets/styles/bootstrap/mixins/breakpoints';
+@import '../../../assets/styles/imports/mixins';
+@import '../../../assets/styles/imports/variables';
+
+.onoffswitch {
+  position: relative;
+  width: rem-calc(48px);
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select: none;
+
+  input.onoffswitch-checkbox {
+    display: none;
+
+    &:checked + .onoffswitch-label .onoffswitch-inner {
+      margin-left: 0;
+    }
+
+    &:checked + label.onoffswitch-label {
+      background-color: $primary-color;
+    }
+
+    &:checked + .onoffswitch-label:before {
+      right: 0;
+      background-color: $white;
+      -webkit-box-shadow: 0 6px 12px 0 #757575;
+      box-shadow: 0 6px 12px 0 #757575;
+    }
+  }
+
+  label.onoffswitch-label {
+    @include radius(25px);
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    height: 18px;
+    padding: 0;
+    line-height: 18px;
+    border: 0 solid #FFFFFF;
+    background-color: #9E9E9E;
+
+    &:before {
+      @include radius(25px);
+      @include transition(right);
+      content: "";
+      display: block;
+      width: 25px;
+      height: 25px;
+      margin: -3.5px;
+      background: #FFFFFF;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 26px;
+      -webkit-box-shadow: 3px 6px 18px 0 rgba(0, 0, 0, 0.2);
+      box-shadow: 3px 6px 18px 0 rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+:host-context(.is-disabled) {
+  .onoffswitch {
+    pointer-events: none;
+  }
+}

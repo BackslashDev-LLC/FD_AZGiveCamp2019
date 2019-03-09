@@ -1,0 +1,136 @@
+@import '../../../assets/styles/bootstrap/mixins/breakpoints';
+@import '../../../assets/styles/imports/mixins';
+@import '../../../assets/styles/imports/variables';
+
+.star-ratings {
+  unicode-bidi: bidi-override;
+  color: rgba(128,128,128,0.3);
+  font-size: rem-calc(44px);
+  height: rem-calc(44px);
+  display: inline-block;
+  position: relative;
+  padding: 0;
+  cursor: pointer;
+  user-select: none;
+
+  &.top {
+      color: $accent-color-alt;
+      padding:0;
+      position: absolute;
+      z-index:1;
+      display:block;
+      top:0;
+      left:0;
+      overflow:hidden;
+      white-space: nowrap;
+  }
+
+  &.bottom {
+      padding:0;
+      display:block;
+      color: $gray800;
+      z-index:0;
+  }
+
+  .mat-icon {
+    width: rem-calc(44px);
+    height: rem-calc(44px);
+    font-size: rem-calc(44px);
+  }
+}
+
+:host-context(.tipple-results) {
+  .star-ratings {
+    font-size: rem-calc(30px);
+    height: rem-calc(30px);
+
+    &.top {
+      text-align: left;
+    }
+
+    .mat-icon {
+      width: rem-calc(30px);
+      height: rem-calc(30px);
+      font-size: rem-calc(30px);
+    }
+  }
+}
+
+:host-context(.product-card){
+  .rating{
+    float:left;
+    margin-right:rem-calc(8px);
+    line-height: rem-calc(20px);
+
+    .star-ratings{
+      font-size:rem-calc(18px);
+      height:rem-calc(18px);
+
+      &.top {
+        text-align: left;
+      }
+
+      &.bottom {
+        color: $gray700;
+      }
+
+      .mat-icon {
+        width: rem-calc(18px);
+        height: rem-calc(18px);
+        font-size: rem-calc(18px);
+      }
+    }
+  }
+}
+
+:host-context(.results__comments) {
+  .rating {
+    float: left;
+    margin-right: rem-calc(8px);
+    line-height: rem-calc(20px);
+
+    .star-ratings {
+      font-size: rem-calc(18px);
+      height: rem-calc(18px);
+      text-align: left;
+      vertical-align: middle;
+
+      &.top {
+        text-align: left;
+      }
+
+      .mat-icon {
+        width: rem-calc(18px);
+        height: rem-calc(18px);
+        font-size: rem-calc(18px);
+      }
+    }
+  }
+}
+
+:host-context(.event-history-card){
+  .rating{
+    float: left;
+    margin-right: rem-calc(8px);
+    line-height: rem-calc(20px);
+
+    .star-ratings{
+      font-size: rem-calc(18px);
+      height: rem-calc(18px);
+
+      &.top {
+        text-align: left;
+      }
+
+      &.bottom {
+        color: $gray700;
+      }
+
+      .mat-icon {
+        width: rem-calc(18px);
+        height: rem-calc(18px);
+        font-size: rem-calc(18px);
+      }
+    }
+  }
+}

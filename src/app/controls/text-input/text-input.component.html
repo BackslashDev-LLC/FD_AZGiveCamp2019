@@ -1,0 +1,20 @@
+<div class="cf-textfield"
+     [class.required]="isRequired"
+     [class.invalid]="isInvalid"
+     [class.has-icon]="iconType"
+     [class.icon-left]="iconType && iconAlignment === 'left'"
+     [class.icon-right]="iconType && iconAlignment === 'right'">
+  <label *ngIf="label">{{label}}</label>
+  <input type="{{type}}"
+         class="cf-textfield__input"
+         [(ngModel)]="value"
+         placeholder="{{placeholderText}}"
+         [disabled]="isDisabled"
+         [readonly]="isReadOnly"
+         [class.ng-invalid]="isInvalid"
+         tabindex="0"
+         (blur)="onBlur.emit(true)"
+  />
+  <span class="required-text" *ngIf="isRequired">Required</span>
+  <i class="material-icons" *ngIf="iconType">{{iconType}}</i>
+</div>

@@ -1,0 +1,16 @@
+<div class="cf-textfield"
+     [class.required]="isRequired"
+     [class.invalid]="isInvalid">
+  <label class="container-label" *ngIf="label">{{label}}</label>
+
+  <label class="custom-file" [class.no-file-selected]="!selectedFile">
+    <input type="file"
+           class="custom-file-input"
+           [disabled]="isDisabled"
+           [readonly]="isReadOnly"
+           tabindex="0"
+           (change)="onFileChanged($event)">
+    <span class="custom-file-label">{{selectedFileName}}</span>
+    <span class="required-text" *ngIf="isRequired">Required</span>
+  </label>
+</div>

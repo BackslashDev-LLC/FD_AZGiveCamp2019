@@ -1,0 +1,160 @@
+@import '../bootstrap/mixins/breakpoints';
+@import './mixins';
+@import './variables';
+
+.mat-button,
+.mat-icon-button,
+.mat-stroked-button {
+  color: $gray500;
+}
+
+.mat-button,
+.mat-flat-button,
+.mat-stroked-button {
+  -webkit-background-clip: padding-box !important;
+  -webkit-border-radius: 4px !important;
+  -moz-background-clip: padding-box !important;
+  border-radius: 4px !important;
+  background-clip: padding-box !important;
+  line-height: rem-calc(28px) !important;
+  padding: rem-calc(10px) rem-calc(20px) !important;
+  text-transform: uppercase;
+}
+
+.mat-card-actions .mat-button {
+  line-height: rem-calc(36px) !important;
+  padding: 0 rem-calc(16px) !important;
+}
+
+.mat-button,
+.mat-flat-button,
+.mat-raised-button,
+.mat-stroked-button,
+.mat-icon-button,
+.mat-fab,
+.mat-mini-fab {
+  font-weight: 700;
+}
+
+.mat-flat-button,
+.mat-raised-button,
+.mat-fab,
+.mat-mini-fab {
+
+  // Apply :hover effect on screens > 992px
+  @include media-breakpoint-up(lg) {
+    .mat-button-focus-overlay {
+      background-color: rgba(255, 255, 255, 0.12);
+    }
+
+    &:hover .mat-button-focus-overlay {
+      opacity: 1;
+    }
+
+    &[disabled]:hover .mat-button-focus-overlay {
+      opacity: 0;
+    }
+  }
+}
+
+// BUTTON [color]="primary"
+.mat-flat-button,
+.mat-raised-button,
+.mat-fab,
+.mat-mini-fab {
+  &.mat-primary {
+    @include linearGradient(lighten($primary-color, 10%), $primary-color);
+    color: white;
+  }
+}
+
+// BUTTON [color]="accent"
+.mat-flat-button.mat-accent,
+.mat-raised-button.mat-accent,
+.mat-fab.mat-accent,
+.mat-mini-fab.mat-accent {
+  @include linearGradient($accent-color-light, $accent-color);
+  color: $gray100;
+}
+
+//BUTTON [disabled]
+.mat-flat-button.mat-primary[disabled],
+.mat-flat-button.mat-accent[disabled],
+.mat-flat-button.mat-warn[disabled],
+.mat-flat-button[disabled][disabled],
+.mat-raised-button.mat-primary[disabled],
+.mat-raised-button.mat-accent[disabled],
+.mat-raised-button.mat-warn[disabled],
+.mat-raised-button[disabled][disabled],
+.mat-fab.mat-primary[disabled],
+.mat-fab.mat-accent[disabled],
+.mat-fab.mat-warn[disabled],
+.mat-fab[disabled][disabled],
+.mat-mini-fab.mat-primary[disabled],
+.mat-mini-fab.mat-accent[disabled],
+.mat-mini-fab.mat-warn[disabled],
+.mat-mini-fab[disabled][disabled] {
+  background: transparent;
+  background-color: $disabled-button-background;
+  opacity: 0.65;
+}
+
+.mat-button[disabled],
+.mat-stroked-button[disabled],
+.mat-stroked-button[disabled][disabled] {
+  opacity: 0.65;
+}
+
+.mat-button,
+.mat-icon-button {
+  .mat-button-focus-overlay {
+    background-color: rgba(255, 255, 255, 0.08);
+    -webkit-transition: opacity .2s cubic-bezier(.35,0,.25,1), background-color .2s cubic-bezier(.35,0,.25,1) !important;
+    -moz-transition: opacity .2s cubic-bezier(.35,0,.25,1), background-color .2s cubic-bezier(.35,0,.25,1) !important;
+    -ms-transition: opacity .2s cubic-bezier(.35,0,.25,1), background-color .2s cubic-bezier(.35,0,.25,1) !important;
+    -o-transition: opacity .2s cubic-bezier(.35,0,.25,1), background-color .2s cubic-bezier(.35,0,.25,1) !important;
+    transition: opacity .2s cubic-bezier(.35,0,.25,1), background-color .2s cubic-bezier(.35,0,.25,1) !important;
+  }
+
+  &:hover .mat-button-focus-overlay {
+    opacity: 0 !important;
+  }
+
+  // Apply :hover effect on screens > 992px
+  @include media-breakpoint-up(lg) {
+    &:hover .mat-button-focus-overlay {
+      opacity: 1 !important;
+    }
+  }
+}
+
+.mat-stroked-button {
+  .mat-button-focus-overlay {
+    background-color: rgba(255, 255, 255, 0.08);
+    -webkit-transition: opacity .2s cubic-bezier(.35,0,.25,1), background-color .2s cubic-bezier(.35,0,.25,1) !important;
+    -moz-transition: opacity .2s cubic-bezier(.35,0,.25,1), background-color .2s cubic-bezier(.35,0,.25,1) !important;
+    -ms-transition: opacity .2s cubic-bezier(.35,0,.25,1), background-color .2s cubic-bezier(.35,0,.25,1) !important;
+    -o-transition: opacity .2s cubic-bezier(.35,0,.25,1), background-color .2s cubic-bezier(.35,0,.25,1) !important;
+    transition: opacity .2s cubic-bezier(.35,0,.25,1), background-color .2s cubic-bezier(.35,0,.25,1) !important;
+  }
+
+  // Apply :hover effect on screens > 992px
+  @include media-breakpoint-up(lg) {
+    &:hover .mat-button-focus-overlay {
+      opacity: 1;
+    }
+  }
+}
+
+.mat-icon-button {
+  padding: rem-calc(8px) !important;
+
+  span.mat-button-wrapper {
+    line-height: rem-calc(24px) !important;
+    vertical-align: top !important;
+
+    mat-icon.mat-icon {
+      vertical-align: top !important;
+    }
+  }
+}

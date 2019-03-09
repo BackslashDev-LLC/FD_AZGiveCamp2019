@@ -1,0 +1,20 @@
+<div class="cf-textfield"
+     [class.required]="isRequired"
+     [class.invalid]="isInvalid"
+     [class.has-icon]="iconType"
+     [class.text-align-right]="isRightAligned">
+  <label *ngIf="label">{{label}}</label>
+  <input type="number"
+         class="cf-textfield__input"
+         min="{{minValue}}"
+         max="{{maxValue}}"
+         [value]="value"
+         (input)="inputChanged($event.target.value)"
+         placeholder="{{placeholderText}}"
+         [disabled]="isDisabled"
+         [readonly]="isReadOnly"
+         [class.ng-invalid]="isInvalid"
+         tabindex="0"/>
+  <span class="required-text" *ngIf="isRequired">Required</span>
+  <i class="material-icons" *ngIf="iconType">{{iconType}}</i>
+</div>

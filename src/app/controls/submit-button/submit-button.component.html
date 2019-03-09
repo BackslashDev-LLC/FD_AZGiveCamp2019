@@ -1,0 +1,8 @@
+<button mat-flat-button color="primary" type="button" class="button primary submit-button"
+        [class.full]="fullWidth"
+        [class.is-processing]="isProcessing"
+        (click)="onBtnClick.emit(true)"
+        [disabled]="isProcessing || isDisabled">
+  <span>{{isProcessing ? "" : buttonText}}</span>
+  <bsd-loading-indicator [isLoading]="isProcessing"></bsd-loading-indicator>
+</button>
