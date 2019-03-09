@@ -73,6 +73,12 @@ export class WalkthroughComponent implements OnInit {
     });
   }
 
+  addRoom(room: any) {
+    let newRoom = JSON.parse(JSON.stringify(room));
+    newRoom.items.map(item => item.selected = false);
+    this.rooms.splice(this.rooms.indexOf(room) + 1, 0, newRoom);
+  }
+
   start() {
     this.started = true;
   }

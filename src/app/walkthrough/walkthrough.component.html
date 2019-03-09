@@ -14,7 +14,7 @@
   <ng-container *ngFor="let room of rooms">
     <h3 mat-subheader>
       {{ room.name }}
-      <button mat-icon-button class="add">
+      <button mat-icon-button class="add" (click)="addRoom(room)">
         <mat-icon>add_circle</mat-icon>
       </button>
     </h3>
