@@ -117,6 +117,6 @@ export class WalkthroughComponent implements OnInit {
     completedWalkthrough.dateTime = new Date();
     console.log(completedWalkthrough);
     this.saveWalkthroughService.saveWalkthrough(completedWalkthrough);
-    this._router.navigate(["home"]);
+    this._router.navigate([""]);
   }
 }
