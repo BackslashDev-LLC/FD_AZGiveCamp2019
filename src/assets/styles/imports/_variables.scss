@@ -1,9 +1,8 @@
-
-$primary-color: #e3593a;
-$primary-color-dark: #d83e25;
-$accent-color: #908173;
-$accent-color-light: #B6A699;
-$accent-color-alt: #F0DEA6;
+$primary-color: #5e694b;
+$primary-color-dark: #566045;
+$accent-color: #f4efe0;
+$accent-color-light: #fff9ea;
+$accent-color-alt: #f0dea6;
 
 $gray900: #212121;
 $gray800: #424242;
@@ -25,23 +24,23 @@ $black: #0c0c0c;
 $white: #ffffff;
 
 // STATUS ALERT COLORS
-$info-color: #2196F3;
-$success-color: #59AD4B;
-$warning-color: #EAB415;
+$info-color: #2196f3;
+$success-color: #59ad4b;
+$warning-color: #eab415;
 $alert-color: #cb4238;
 
 // FONTS
-$body-font-family: 'Roboto', 'sans-serif';
-$heading-font-family: 'Roboto Slab', 'serif';
+$body-font-family: "Roboto", "sans-serif";
+$heading-font-family: "Roboto Slab", "serif";
 
 // Z-INDEX MASTER LIST
-$zindex-dropdown:                   1000 !default;
-$zindex-sticky:                     1020 !default;
-$zindex-fixed:                      1030 !default;
-$zindex-modal-backdrop:             1040 !default;
-$zindex-modal:                      1050 !default;
-$zindex-popover:                    1060 !default;
-$zindex-tooltip:                    1070 !default;
+$zindex-dropdown: 1000 !default;
+$zindex-sticky: 1020 !default;
+$zindex-fixed: 1030 !default;
+$zindex-modal-backdrop: 1040 !default;
+$zindex-modal: 1050 !default;
+$zindex-popover: 1060 !default;
+$zindex-tooltip: 1070 !default;
 
 // TEXT COLORS
 $body-font-color: $gray400;
@@ -62,7 +61,7 @@ $input-text-color: $gray900;
 $placeholder-text: #575757;
 
 $disabled-text-color: $gray700;
-$disabled-input-background: rgba(66, 66, 66, 0.50);
+$disabled-input-background: rgba(66, 66, 66, 0.5);
 
 $hint-text-color: $gray700;
 $radio-checkbox-text-color: $gray600;
