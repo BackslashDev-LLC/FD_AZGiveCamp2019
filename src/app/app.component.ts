@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import {WalkthroughService} from "../app/services/walkthrough.services";
+import {WalkthroughService, FullWalkthrough} from "../app/services/walkthrough.services";
+import { SaveWalkthroughService } from "./services/save-walkthrough.service";
 import {DateAdapter} from "@angular/material";
 
 
@@ -12,7 +13,9 @@ import {DateAdapter} from "@angular/material";
 export class AppComponent implements OnInit {
   title = "furnishing-dignity";
 
-  constructor(private _router: Router, public walkthroughService: WalkthroughService) {}
+  private walk: FullWalkthrough;
+
+  constructor(private _router: Router, public walkthroughService: WalkthroughService, private saveWalkthroughService: SaveWalkthroughService) {}
 
   startWalkthrough() {
     this._router.navigate(["walkthrough"]);
@@ -25,6 +28,16 @@ export class AppComponent implements OnInit {
    var test = this.walkthroughService.getWalkthroughById("1").subscribe(res =>{
 
      console.log(res);
-   })
+   });
+   this.walk = new FullWalkthrough();
+   this.walk.key = "TestKey";
+   this.walk.dateTime = "3-9-2019";
+   this.walk.rooms =[{
+     name: "Test room",
+     items: []
+   }];
+
+    this.saveWalkthroughService.saveWalkthrough(this.walk);
+
   }
 }

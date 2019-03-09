@@ -18,11 +18,36 @@ export class FullRoom {
   }
   name: string;
   items: Item[];
+
+  public static getFirebase(fullRooms: FullRoom[]){
+    var rooms = [];
+    for(var i =0; i < fullRooms.length; i ++){
+      let tempRoom = fullRooms[i];
+      var mapRoom = {
+        name: tempRoom.name,
+        items: Item.getFireBase(tempRoom.items)
+      };
+      rooms.push(mapRoom);
+    }
+
+    return rooms;
+  }
 }
 
 export class FullWalkthrough {
   dateTime: any;
+  key: string;
   rooms: FullRoom[] ;
+
+  public static getFirebase(fullWalk: FullWalkthrough){
+    var walk = {
+      key: fullWalk.key,
+      dateTime: fullWalk.dateTime,
+      rooms: FullRoom.getFirebase(fullWalk.rooms)
+    };
+
+    return walk;
+  }
 }
 
 export class Item {
@@ -36,6 +61,23 @@ export class Item {
   attributes: string[];
   isRateable: boolean;
   comments: string;
+  rating: number;
+
+  public static getFireBase(fullItems: Item[]){
+    var items = [];
+    for(var i = 0; i < fullItems.length; i++){
+      var tempItem = fullItems[i];
+      var item = {
+        name: tempItem.name,
+        attributes: tempItem.attributes,
+        isRateable: tempItem.isRateable,
+        rating: tempItem.rating
+      }
+      items.push(item);
+    }
+
+    return items;
+  }
 }
 
 
