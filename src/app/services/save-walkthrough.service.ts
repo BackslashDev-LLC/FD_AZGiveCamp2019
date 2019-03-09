@@ -6,6 +6,7 @@ import {FullRoom, FullWalkthrough} from './walkthrough.services';
   providedIn: 'root'
 })
 export class SaveWalkthroughService {
+  private  savedWalkthrough = "/SavedWalkthrough";
 
   constructor(public afs: AngularFirestore) { }
 
@@ -13,8 +14,14 @@ export class SaveWalkthroughService {
     var walk = FullWalkthrough.getFirebase(walkthrough);
     console.log(walk);
 
-    this.afs.collection("/SavedWalkthrough").add(
+    this.afs.collection(this.savedWalkthrough).add(
       walk
     );
+  }
+
+  public getSavedWalkthrough(key: string){
+    this.afs.collection(this.savedWalkthrough, ref => {
+      ref.where("key", '==',  key )
+    });
   }
 }
