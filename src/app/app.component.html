@@ -1,10 +1,16 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" *ngIf="authService.isLoggedIn">
   <mat-toolbar-row>
     <span>Furnishing Dignity</span>
 
     <button mat-button (click)="goHome()">Home</button>
     <button mat-button (click)="startWalkthrough()">Start Walkthrough</button>
-    <button *ngIf="authService.isLoggedIn" mat-button (click)="authService.logout()">Logout</button> 
+    <button
+      *ngIf="authService.isLoggedIn"
+      mat-button
+      (click)="authService.logout()"
+    >
+      Logout
+    </button>
   </mat-toolbar-row>
 </mat-toolbar>
 <div class="container" style="padding-top:2em;">
