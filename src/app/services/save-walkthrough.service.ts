@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, DocumentReference } from '@angular/fire/firestore';
 import { FullWalkthrough} from '../models/fullWalkthrough.model';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,8 +21,9 @@ export class SaveWalkthroughService {
   }
 
   public getSavedWalkthrough(){
-    return this.afs.collection(this.savedWalkthrough)
-      .valueChanges();
+    var ref = this.afs.collection(this.savedWalkthrough).ref.limit(1000);
+
+    return this.afs.collection(this.savedWalkthrough).snapshotChanges();
   }
 
   public getSavedWalkthroughById(id: string){

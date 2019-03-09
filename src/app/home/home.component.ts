@@ -12,8 +12,8 @@ import { FullWalkthrough } from "../models/fullWalkthrough.model";
 })
 export class HomeComponent implements OnInit {
   searchTerm: string;
-  searchResults: FullWalkthrough[];
-  selectedClient: Client;
+  searchResults: Client[];
+  selectedClient: any;
   displayedColumns: string[] = ["name", "date", "actions"];
   selection: SelectionModel<Client>;
 
@@ -24,19 +24,23 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {}
 
+  public selectClient(client){
+    this.selectedClient = client;
+  }
+
   search() {
     this.saveWalkthroughService.getSavedWalkthrough().subscribe(res => {
       const walkthroughs = [];
-      console.log(res);
-      for (let i = 0; i < res.length; i++) {
-        const walk = new FullWalkthrough().fromFirebase(res[i]);
+      res.forEach(action => {
+        var data = action.payload.doc.data();
 
-        if (
-          walk.key.toLowerCase().indexOf(this.searchTerm.toLowerCase()) !== -1
-        ) {
-          walkthroughs.push(walk);
+        if(data.key.indexOf(this.searchTerm)){
+          var client = new Client().fromFirebase(action.payload.doc.id, data);
+
+          walkthroughs.push(client);
         }
-      }
+
+      });
       this.searchResults = walkthroughs;
     });
 
@@ -48,8 +52,9 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  goToMoveList() {
-    this._router.navigate(["movelist"]);
+  goToMoveList(client) {
+    debugger;
+    this._router.navigate(["movelist/" + client.id]);
   }
 
   goToWalkthrough() {

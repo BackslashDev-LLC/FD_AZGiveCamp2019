@@ -31,10 +31,10 @@ export class AppComponent implements OnInit {
   checkIfOnline() {
 
   }
-  
+
   ngOnInit() {
     var test = this.walkthroughService.getWalkthroughSource().then(res => {
-      console.log(res);
+
     });
   }
 }

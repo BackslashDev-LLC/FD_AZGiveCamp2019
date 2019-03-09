@@ -1,5 +1,6 @@
 import { FullRoom } from "./fullRoom.model";
 
+
 export class FullWalkthrough {
   key: string;
   dateTime: any;
