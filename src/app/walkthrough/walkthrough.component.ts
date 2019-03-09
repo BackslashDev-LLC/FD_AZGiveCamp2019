@@ -6,6 +6,7 @@ import { FullWalkthrough } from "../models/fullWalkthrough.model";
 import { FullRoom } from "../models/fullRoom.model";
 import { SaveWalkthroughService } from "../services/save-walkthrough.service";
 import { RouterModule } from "@angular/router";
+import { Item } from "../models/item.model";
 
 @Component({
   selector: "fd-walkthrough",
@@ -62,7 +63,7 @@ export class WalkthroughComponent implements OnInit {
       });
   }
 
-  openDetail(w: any) {
+  openDetail(w: Item) {
     w.selected = true;
 
     const dialogRef = this.dialog.open(DetailComponent, {
@@ -73,13 +74,25 @@ export class WalkthroughComponent implements OnInit {
     });
   }
 
+  addRoom(room: any) {
+    let newRoom = JSON.parse(JSON.stringify(room));
+    newRoom.items.map(item => item.selected = false);
+    this.rooms.splice(this.rooms.indexOf(room) + 1, 0, newRoom);
+  }
+
   start() {
     this.started = true;
   }
   complete() {
-    var completedWalkthrough = new FullWalkthrough();
+    const completedWalkthrough = new FullWalkthrough();
     completedWalkthrough.key = this.familyName;
-    //     completedWalkthrough.rooms =
-    // this.saveWalkthroughService.saveWalkthrough()
+    completedWalkthrough.rooms = this.rooms
+      .filter(a => a.items.some(b => b.selected))
+      .map(a => {
+        const room = new FullRoom(a.name);
+        room.items = a.items.filter(a => a.selected);
+        return room;
+      });
+    this.saveWalkthroughService.saveWalkthrough(completedWalkthrough);
   }
 }

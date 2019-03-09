@@ -45,8 +45,6 @@ export class HomeComponent implements OnInit {
       allowMultiSelect,
       initialSelection
     );
-    //console.log(this.searchResults[0].name);
-    //console.log(this.searchResults[1].name);
   }
 
   goToMoveList() {
