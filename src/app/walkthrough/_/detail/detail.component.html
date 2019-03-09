@@ -1,9 +1,6 @@
 <h1 mat-dialog-title>{{ item.name }} Detail</h1>
-<div
-  mat-dialog-content
-  *ngFor="let attribute of item.attributes; let i = index"
->
-  <div class="row">
+<div mat-dialog-content>
+  <div class="row" *ngFor="let attribute of item.attributes; let i = index">
     <div class="col-6">
       <bsd-checkbox [ngModel]="false" label="attribute"></bsd-checkbox>
     </div>
