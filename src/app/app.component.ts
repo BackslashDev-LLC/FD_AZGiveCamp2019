@@ -16,7 +16,8 @@ export class AppComponent implements OnInit {
   constructor(
     private _router: Router,
     public authService: AuthService,
-    public walkthroughService: WalkthroughService
+    public walkthroughService: WalkthroughService,
+    private saveWalkthroughService: SaveWalkthroughService
   ) {}
 
   startWalkthrough() {
