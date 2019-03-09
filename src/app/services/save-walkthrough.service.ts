@@ -22,7 +22,12 @@ export class SaveWalkthroughService {
   public getSavedWalkthrough(){
     return this.afs.collection(this.savedWalkthrough)
       .valueChanges();
-
-
   }
+
+  public getSavedWalkthroughById(id: string){
+    return this.afs.doc(this.savedWalkthrough + "/" + id)
+      .valueChanges()
+  }
+
+
 }

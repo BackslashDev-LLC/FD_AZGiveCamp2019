@@ -10,7 +10,7 @@ import { AppGuard } from "./app.guard";
 const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "walkthrough", component: WalkthroughComponent, canActivate: [AppGuard] },
-  { path: "movelist", component: MovelistComponent, canActivate: [AppGuard] },
+  { path: "movelist/:id", component: MovelistComponent, canActivate: [AppGuard] },
   { path: "", component: HomeComponent, canActivate: [AppGuard] }
 ];
 
