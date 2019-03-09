@@ -82,7 +82,8 @@ export class WalkthroughComponent implements OnInit {
                 a.name,
                 a.attributes.filter(b => b.selected).map(b => b.name),
                 a.isRankable,
-                a.comments
+                a.comments,
+                a.rating
               )
           );
         return room;

@@ -9,6 +9,12 @@
     </div>
   </div>
   <div class="row">
+    <div class="col-6" *ngIf="item.isRankable">
+      <bsd-number-input label="Rating" [(ngModel)]="item.rating" >
+      </bsd-number-input>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-12">
       <bsd-text-area
         label="Notes/Comments"
