@@ -62,3 +62,17 @@ mat-list {
     color: white;
   }
 }
+
+.mat-subheader {
+  input {
+    background-color: transparent;
+    color: white;
+    font-size: large;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    padding: 5px;
+    padding-left: 10px;
+    background-color: #b0ab6a;
+    border-radius: 10px;
+  }
+}

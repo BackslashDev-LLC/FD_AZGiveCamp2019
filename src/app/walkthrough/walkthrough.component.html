@@ -15,9 +15,7 @@
   <ng-container *ngFor="let room of rooms">
     <h3 mat-subheader>
       <div class="col-12">
-        <bsd-text-input
-          [(ngModel)]="room.name"
-        ></bsd-text-input>
+        <input matInput [(ngModel)]="room.name" />
       </div>
       <button mat-icon-button class="add" (click)="addRoom(room)">
         <mat-icon>add_circle</mat-icon>
@@ -44,4 +42,3 @@
 >
   Complete Walkthrough
 </button>
-

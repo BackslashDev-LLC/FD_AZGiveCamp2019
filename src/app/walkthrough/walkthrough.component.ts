@@ -17,7 +17,7 @@ import { Item } from "../models/item.model";
 })
 export class WalkthroughComponent implements OnInit {
   familyName: string;
-  started: boolean = false;
+  started: boolean = true;
 
   rooms: FullRoom[] = [];
   //   {
