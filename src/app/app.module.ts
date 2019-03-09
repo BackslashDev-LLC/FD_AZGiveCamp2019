@@ -40,6 +40,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     BrowserAnimationsModule,
     AppMaterialModule,
     ControlsModule,
+    MatTableModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule
   ],
