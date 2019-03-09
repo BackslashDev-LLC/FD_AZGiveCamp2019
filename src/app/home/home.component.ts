@@ -12,7 +12,7 @@ import { FullWalkthrough } from '../models/fullWalkthrough.model';
 })
 export class HomeComponent implements OnInit {
   searchTerm: string;
-  searchResults: any[];
+  searchResults: FullWalkthrough[];
   selectedClient: Client;
   displayedColumns: string[] = ["name", "date"];
   selection: SelectionModel<Client>;
@@ -24,11 +24,21 @@ export class HomeComponent implements OnInit {
   }
 
   search() {
-    this.saveWalkthroughService.getSavedWalkthrough(this.searchTerm)
-      .subscribe(res => {
-        this.searchResults = res;
-        console.log(res)
-      });
+   this.saveWalkthroughService.getSavedWalkthrough()
+     .subscribe(res => {
+     var walkthroughs = [];
+       console.log(res);
+     for(var i =0; i < res.length; i++){
+       let walk = res[i] as FullWalkthrough;
+
+       if(walk.key.toLowerCase().indexOf(this.searchTerm.toLowerCase()) !== -1){
+         walkthroughs.push(walk);
+       }
+     }
+     debugger;
+
+       this.searchResults = walkthroughs;
+   });
 
     const initialSelection = [];
     const allowMultiSelect = false;

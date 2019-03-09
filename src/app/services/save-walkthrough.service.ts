@@ -19,9 +19,10 @@ export class SaveWalkthroughService {
     );
   }
 
-  public getSavedWalkthrough(key: string){
-    return this.afs.collection(this.savedWalkthrough, (ref: any) => {
-      return ref.where("key", '==',  key )
-    }).valueChanges();
+  public getSavedWalkthrough(){
+    return this.afs.collection(this.savedWalkthrough)
+      .valueChanges();
+
+
   }
 }
