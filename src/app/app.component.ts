@@ -17,7 +17,8 @@ export class AppComponent implements OnInit {
   constructor(
     private _router: Router,
     public authService: AuthService,
-    public walkthroughService: WalkthroughService
+    public walkthroughService: WalkthroughService,
+    private saveWalkthroughService: SaveWalkthroughService
   ) {}
 
 
@@ -34,7 +35,6 @@ export class AppComponent implements OnInit {
       .subscribe(res => {
         console.log(res);
       });
-
   }
 
 }
