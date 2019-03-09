@@ -34,7 +34,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     BrowserAnimationsModule,
     AppMaterialModule,
     ControlsModule,
-    AngularFireModule.initializeApp(environment.firebase, 'HelpCamp2019'),
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule
 
   ],

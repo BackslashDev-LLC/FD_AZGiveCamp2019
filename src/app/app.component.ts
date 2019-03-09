@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import {WalkthroughService} from "../app/services/walkthrough.services";
+import {DateAdapter} from "@angular/material";
+
 
 @Component({
   selector: "fd-root",
@@ -20,8 +22,12 @@ export class AppComponent implements OnInit {
     this._router.navigate([""]);
   }
   ngOnInit(){
-   this.walkthroughService.getWalkthroughById("Verry2019").subscribe(a => {
-     console.log(a);
+   var test = this.walkthroughService.getWalkthroughById("1").subscribe(res =>{
+
+     console.log(res);
    })
+
+    var more = this.walkthroughService.getEntireWalkthrough("1");
+   console.log(more);
   }
 }
