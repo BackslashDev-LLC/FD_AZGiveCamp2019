@@ -23,7 +23,7 @@ mat-list-item {
   }
 
   &.selected {
-    background-color: #d7eade;
+    background-color: rgba(46, 204, 64, 0.1);
   }
 
   .selected {
@@ -60,5 +60,25 @@ mat-list {
     right: 0;
     font-size: large;
     color: white;
+  }
+}
+
+.mat-subheader {
+  input {
+    background-color: transparent;
+    color: white;
+    font-size: large;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    padding: 5px;
+    padding-left: 10px;
+    background-color: #b0ab6a;
+    border-radius: 10px;
+    width: 50%;
+
+    &:focus {
+      border: 1px solid rgba(0, 0, 0, 0.8);
+      outline: none;
+    }
   }
 }

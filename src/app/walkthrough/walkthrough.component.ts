@@ -1,10 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material";
+import { MatSnackBar } from "@angular/material";
 import { DetailComponent } from "./_/detail/detail.component";
 import { WalkthroughService } from "../services/walkthrough.services";
 import { FullWalkthrough } from "../models/fullWalkthrough.model";
 import { FullRoom } from "../models/fullRoom.model";
 import { SaveWalkthroughService } from "../services/save-walkthrough.service";
+import { Router } from "@angular/router";
 import { RouterModule } from "@angular/router";
 import { Item } from "../models/item.model";
 
@@ -15,7 +17,7 @@ import { Item } from "../models/item.model";
 })
 export class WalkthroughComponent implements OnInit {
   familyName: string;
-  started: boolean = false;
+  started: boolean = true;
 
   rooms: FullRoom[] = [];
   //   {
@@ -49,7 +51,9 @@ export class WalkthroughComponent implements OnInit {
   // ];
 
   constructor(
+    private _router: Router,
     private dialog: MatDialog,
+    private snackBar: MatSnackBar,
     public walkthroughService: WalkthroughService,
     public saveWalkthroughService: SaveWalkthroughService
   ) {}
@@ -63,8 +67,14 @@ export class WalkthroughComponent implements OnInit {
       });
   }
 
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000
+    });
+  }
+
   openDetail(w: Item) {
-    w.selected = true;
+    //w.selected = true;
 
     const dialogRef = this.dialog.open(DetailComponent, {
       width: "600px",
@@ -76,8 +86,9 @@ export class WalkthroughComponent implements OnInit {
 
   addRoom(room: any) {
     let newRoom = JSON.parse(JSON.stringify(room));
-    newRoom.items.map(item => item.selected = false);
+    newRoom.items.map(item => (item.selected = false));
     this.rooms.splice(this.rooms.indexOf(room) + 1, 0, newRoom);
+    this.openSnackBar(newRoom.name + " Added!", "");
   }
 
   start() {
@@ -90,9 +101,22 @@ export class WalkthroughComponent implements OnInit {
       .filter(a => a.items.some(b => b.selected))
       .map(a => {
         const room = new FullRoom(a.name);
-        room.items = a.items.filter(a => a.selected);
+        room.items = a.items
+          .filter(a => a.selected)
+          .map(
+            a =>
+              new Item(
+                a.name,
+                a.attributes.filter(b => b.selected).map(b => b.name),
+                a.isRankable,
+                a.comments
+              )
+          );
         return room;
       });
+    completedWalkthrough.dateTime = new Date();
+    console.log(completedWalkthrough);
     this.saveWalkthroughService.saveWalkthrough(completedWalkthrough);
+    this._router.navigate([""]);
   }
 }

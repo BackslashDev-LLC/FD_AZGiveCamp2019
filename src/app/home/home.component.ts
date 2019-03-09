@@ -29,10 +29,14 @@ export class HomeComponent implements OnInit {
   }
 
   search() {
+    if (!this.searchTerm)
+    {
+      this.searchTerm = "";
+    }
     this.saveWalkthroughService.getSavedWalkthrough().subscribe(res => {
       const walkthroughs = [];
       res.forEach(action => {
-        var data = action.payload.doc.data();
+        var data = action.payload.doc.data() as FullWalkthrough;
 
         if(data.key.indexOf(this.searchTerm)){
           var client = new Client().fromFirebase(action.payload.doc.id, data);

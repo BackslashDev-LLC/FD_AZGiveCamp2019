@@ -2,16 +2,33 @@
 <div mat-dialog-content>
   <div class="row">
     <div class="col-6" *ngFor="let attribute of item.attributes; let i = index">
-      <bsd-checkbox [ngModel]="false" [label]="attribute"></bsd-checkbox>
+      <bsd-checkbox
+        [(ngModel)]="attribute.selected"
+        [label]="attribute.name"
+      ></bsd-checkbox>
     </div>
   </div>
   <div class="row">
     <div class="col-12">
-      <bsd-text-area label="Notes/Comments"></bsd-text-area>
+      <bsd-text-area
+        label="Notes/Comments"
+        [(ngModel)]="item.comments"
+      ></bsd-text-area>
     </div>
   </div>
 </div>
-<div mat-dialog-actions>
+<div mat-dialog-actions style="position:relative">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button mat-dialog-close>Add</button>
+  <button mat-button mat-dialog-close (click)="close()">
+    {{ item.selected ? "Update" : "Add" }}
+  </button>
+  <button
+    mat-button
+    mat-dialog-close
+    *ngIf="item.selected"
+    (click)="remove()"
+    style="position: absolute; right:0; color: red"
+  >
+    Remove
+  </button>
 </div>
