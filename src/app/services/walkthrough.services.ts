@@ -1,5 +1,8 @@
 import { AngularFirestore, AngularFirestoreDocument, DocumentReference } from '@angular/fire/firestore';
 import { Injectable } from "@angular/core";
+import { FullWalkthrough } from '../models/fullWalkthrough.model';
+import { Item } from '../models/item.model';
+import { FullRoom } from '../models/fullRoom.model';
 
 export interface Walkthrough {
   dateTime: any,
@@ -11,74 +14,17 @@ export interface Room {
   items: DocumentReference[]
 }
 
-export class FullRoom {
-  public constructor(name: string){
-    this.name = name;
-    this.items = [];
-  }
-  name: string;
-  items: Item[];
 
-  public static getFirebase(fullRooms: FullRoom[]){
-    var rooms = [];
-    for(var i =0; i < fullRooms.length; i ++){
-      let tempRoom = fullRooms[i];
-      var mapRoom = {
-        name: tempRoom.name,
-        items: Item.getFireBase(tempRoom.items)
-      };
-      rooms.push(mapRoom);
-    }
 
-    return rooms;
-  }
-}
 
-export class FullWalkthrough {
-  dateTime: any;
-  key: string;
-  rooms: FullRoom[] ;
 
-  public static getFirebase(fullWalk: FullWalkthrough){
-    var walk = {
-      key: fullWalk.key,
-      dateTime: fullWalk.dateTime,
-      rooms: FullRoom.getFirebase(fullWalk.rooms)
-    };
 
-    return walk;
-  }
-}
 
-export class Item {
-  public constructor(name: string, attributes:string[], isRateable:boolean, comments: string){
-    this.name = name;
-    this.attributes = attributes;
-    this.isRateable = isRateable;
-    this.comments = comments;
-  }
-  name: string;
-  attributes: string[];
-  isRateable: boolean;
-  comments: string;
-  rating: number;
 
-  public static getFireBase(fullItems: Item[]){
-    var items = [];
-    for(var i = 0; i < fullItems.length; i++){
-      var tempItem = fullItems[i];
-      var item = {
-        name: tempItem.name,
-        attributes: tempItem.attributes,
-        isRateable: tempItem.isRateable,
-        rating: tempItem.rating
-      }
-      items.push(item);
-    }
 
-    return items;
-  }
-}
+
+
+
 
 
 
@@ -86,10 +32,41 @@ export class Item {
 export class WalkthroughService {
     constructor(public afs: AngularFirestore) {
     }
+public getWalkthroughSource(){
+    var wtSource: FullWalkthrough = new FullWalkthrough();
+     this.getWalkthroughById('1').subscribe(wt=>{
+        Promise.all(wt.rooms.map(r=> {return new Promise((resolve,reject)=>{
+            
+            this.getRoomById(r.id).subscribe(rm=>{
+                var wtRoom: FullRoom = new FullRoom(rm.name);
+               Promise.all(rm.items.map(itm=>{
+                    return new Promise((itmResolve,itmReject)=>{
+                        this.getItemById(itm.id).subscribe((itmVal: Item) =>
+                            {
+                                itmResolve(itmVal);
+                            }                        )
+                    }); 
+                })).then(resItems=>resItems.forEach(resItem =>
+                    {
+                        //wtRoom.items.push(new Item(resItem.name, resItem.attributes, resItem.isRateable, resItem.comments))
+                    }
+                    )
 
+                );
+                resolve(wtRoom);
+            })
+        });}  )).then((allRm: FullRoom[]) =>{
+            wtSource.rooms = allRm;
+        });
+    }
+        )
+}
+    // public searchWalkthrough(name: string){
+    //     return this.afs.collection("/Walkthrough", ref => {ref.where(id >= name).})
+    // }array
     public getWalkthroughById(id: string) {
-      return this.afs.doc<Walkthrough>("/Walkthrough/" + id)
-        .valueChanges()
+      return this.afs.doc<Walkthrough>( "/Walkthrough/" + id)
+        .valueChanges();
     }
 
     public getRoomById(id: string){

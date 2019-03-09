@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, DocumentReference } from '@angular/fire/firestore';
-import {FullRoom, FullWalkthrough} from './walkthrough.services';
+import { FullWalkthrough} from '../models/fullWalkthrough.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +20,8 @@ export class SaveWalkthroughService {
   }
 
   public getSavedWalkthrough(key: string){
-    this.afs.collection(this.savedWalkthrough, ref => {
-      ref.where("key", '==',  key )
+    return this.afs.collection(this.savedWalkthrough, (ref: any) => {
+      return ref.where("key", '==',  key )
     });
   }
 }
