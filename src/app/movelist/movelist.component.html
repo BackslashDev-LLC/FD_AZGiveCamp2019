@@ -1,5 +1,5 @@
 <div class="head">
-  <p>Smith Move List</p>
+  <p>{{ moveListInput.key }} Move List</p>
   <p>3 floor - elevator - park on 2nd Ave in front of building</p>
 </div>
 <div class="row">
@@ -14,7 +14,7 @@
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngFor="let room of rooms">
+        <ng-container *ngFor="let room of moveListInput.rooms | slice:0:moveListInput.rooms.length/2">
           <tr>
             <td style="font-weight:bold;">{{ room.name }}</td>
             <td></td>
@@ -22,7 +22,7 @@
             <td></td>
           </tr>
           <tr *ngFor="let item of room.items">
-            <td>{{ item }}</td>
+            <td>{{ item.name }}{{ item.comments ? ' (' + item.comments + ')' : '' }}</td>
             <td></td>
             <td></td>
             <td></td>
@@ -60,7 +60,7 @@
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngFor="let room of rooms2">
+        <ng-container *ngFor="let room of moveListInput.rooms | slice:moveListInput.rooms.length/2">
           <tr>
             <td style="font-weight:bold;">{{ room.name }}</td>
             <td></td>
@@ -68,7 +68,7 @@
             <td></td>
           </tr>
           <tr *ngFor="let item of room.items">
-            <td>{{ item }}</td>
+            <td>{{ item.name }}{{ item.comments ? ' (' + item.comments + ')' : '' }}</td>
             <td></td>
             <td></td>
             <td></td>
