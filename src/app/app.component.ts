@@ -13,7 +13,7 @@ import {DateAdapter} from "@angular/material";
 export class AppComponent implements OnInit {
   title = "furnishing-dignity";
 
-  constructor(private _router: Router, private authService: AuthService, public walkthroughService: WalkthroughService) {}
+  constructor(private _router: Router, public authService: AuthService, public walkthroughService: WalkthroughService) {}
 
   startWalkthrough() {
     this._router.navigate(["walkthrough"]);
