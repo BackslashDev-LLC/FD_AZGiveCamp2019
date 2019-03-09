@@ -8,8 +8,8 @@ import { DetailComponent } from "./_/detail/detail.component";
   styleUrls: ["./walkthrough.component.scss"]
 })
 export class WalkthroughComponent implements OnInit {
-  familyName: string = "test";
-  started: boolean = true;
+  familyName: string;
+  started: boolean = false;
 
   rooms: any[] = [
     {

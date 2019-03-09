@@ -1,7 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { MatTableModule } from "@angular/material";
-import { AngularFireModule } from "@angular/fire"
+import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 
 import { AppRoutingModule } from "./app-routing.module";
@@ -17,12 +17,12 @@ import { MovelistComponent } from "./movelist/movelist.component";
 import { HomeComponent } from "./home/home.component";
 import { ControlsModule } from "./controls/controls.module";
 
-import { FormsModule} from "@angular/forms";
+import { FormsModule } from "@angular/forms";
 
 import { DetailComponent } from "./walkthrough/_/detail/detail.component";
-import { WalkthroughService } from "./services/walkthrough.services"
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-
+import { WalkthroughService } from "./services/walkthrough.services";
+import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { AuthService } from "./auth/auth.service";
 
 @NgModule({
   declarations: [
@@ -48,7 +48,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     AngularFirestoreModule,
     AngularFireAuthModule
   ],
-  providers: [ WalkthroughService],
+  providers: [WalkthroughService, AuthService],
   bootstrap: [AppComponent],
   entryComponents: [DetailComponent]
 })

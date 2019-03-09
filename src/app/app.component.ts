@@ -1,9 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { AuthService } from  '../app/auth/auth.service';
-import {WalkthroughService} from "../app/services/walkthrough.services";
-import {DateAdapter} from "@angular/material";
-
+import { AuthService } from "../app/auth/auth.service";
+import { WalkthroughService } from "../app/services/walkthrough.services";
+import { DateAdapter } from "@angular/material";
 
 @Component({
   selector: "fd-root",
@@ -13,7 +12,11 @@ import {DateAdapter} from "@angular/material";
 export class AppComponent implements OnInit {
   title = "furnishing-dignity";
 
-  constructor(private _router: Router, private authService: AuthService, public walkthroughService: WalkthroughService) {}
+  constructor(
+    private _router: Router,
+    public authService: AuthService,
+    public walkthroughService: WalkthroughService
+  ) {}
 
   startWalkthrough() {
     this._router.navigate(["walkthrough"]);
@@ -22,10 +25,11 @@ export class AppComponent implements OnInit {
   goHome() {
     this._router.navigate([""]);
   }
-  ngOnInit(){
-   var test = this.walkthroughService.getWalkthroughById("1").subscribe(res =>{
-
-     console.log(res);
-   })
+  ngOnInit() {
+    var test = this.walkthroughService
+      .getWalkthroughById("1")
+      .subscribe(res => {
+        console.log(res);
+      });
   }
 }
