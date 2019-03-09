@@ -1,12 +1,41 @@
 <div class="container">
   <div class="row">
     <div class="col-10">
-      <bsd-text-input type="text"></bsd-text-input>
+      <bsd-text-input [(ngModel)]="searchTerm" type="text"></bsd-text-input>
     </div>
     <div class="col-2">
-      <button mat-flat-button color="primary">
+      <button mat-flat-button color="primary" (click)="search()">
         Search
       </button>
     </div>
+  </div>
+  <div class="row">
+    <table mat-table [dataSource]="searchResults">
+      <!-- Checkbox Column -->
+      <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggle() : null"
+                          [checked]="selection.hasValue() && isAllSelected()"
+                          [indeterminate]="selection.hasValue() && !isAllSelected()">
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()"
+                          (change)="$event ? selection.toggle(row) : null"
+                          [checked]="selection.isSelected(row)">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let client" (click)="onSelect(client)"> {{client.name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef>Walkthrough Date</th>
+            <td mat-cell *matCellDef="let client"> {{client.walkthroughDate.toDateString()}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
   </div>
 </div>
