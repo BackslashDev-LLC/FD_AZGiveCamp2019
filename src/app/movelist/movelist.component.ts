@@ -24,4 +24,6 @@ export class MovelistComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  
 }
