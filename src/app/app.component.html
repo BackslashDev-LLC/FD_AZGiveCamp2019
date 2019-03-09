@@ -4,19 +4,22 @@
 
     <button mat-button (click)="goHome()">Home</button>
     <button mat-button (click)="startWalkthrough()">Start Walkthrough</button>
-    <a
-      mat-button
-      *ngIf="authService.isLoggedIn"
-      href="https://console.firebase.google.com/u/1/project/helpcamp2019/authentication/users"
-      >Manage Users</a
-    >
-    <button
-      *ngIf="authService.isLoggedIn"
-      mat-button
-      (click)="authService.logout()"
-    >
-      Logout
-    </button>
+
+    <div class="right">
+      <a
+        mat-button
+        *ngIf="authService.isLoggedIn"
+        href="https://console.firebase.google.com/u/1/project/helpcamp2019/authentication/users"
+        >Manage Users</a
+      >
+      <button
+        *ngIf="authService.isLoggedIn"
+        mat-button
+        (click)="authService.logout()"
+      >
+        Logout
+      </button>
+    </div>
   </mat-toolbar-row>
 </mat-toolbar>
 <div class="container" style="padding-top:2em;">
