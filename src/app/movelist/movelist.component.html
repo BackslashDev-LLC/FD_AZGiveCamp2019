@@ -14,7 +14,7 @@
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngFor="let room of moveListInput.rooms | slice:0:moveListInput.rooms.length/2">
+        <ng-container *ngFor="let room of moveListInput.rooms | slice:0:moveListInput.rooms?.length/2">
           <tr>
             <td style="font-weight:bold;">{{ room.name }}</td>
             <td></td>
@@ -60,7 +60,7 @@
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngFor="let room of moveListInput.rooms | slice:moveListInput.rooms.length/2">
+        <ng-container *ngFor="let room of moveListInput.rooms | slice:moveListInput.rooms?.length/2">
           <tr>
             <td style="font-weight:bold;">{{ room.name }}</td>
             <td></td>
