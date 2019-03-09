@@ -24,13 +24,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {}
 
-  public selectClient(client){
+  public selectClient(client) {
     this.selectedClient = client;
   }
 
   search() {
-    if (!this.searchTerm)
-    {
+    if (!this.searchTerm) {
       this.searchTerm = "";
     }
     this.saveWalkthroughService.getSavedWalkthrough().subscribe(res => {
@@ -38,12 +37,11 @@ export class HomeComponent implements OnInit {
       res.forEach(action => {
         var data = action.payload.doc.data() as FullWalkthrough;
 
-        if(data.key.indexOf(this.searchTerm)){
-          var client = new Client().fromFirebase(action.payload.doc.id, data);
+        if (data.key.indexOf(this.searchTerm)) {
+          var client = Client.fromFirebase(action.payload.doc.id, data);
 
           walkthroughs.push(client);
         }
-
       });
       this.searchResults = walkthroughs;
     });
@@ -61,7 +59,7 @@ export class HomeComponent implements OnInit {
     this._router.navigate(["movelist/" + client.id]);
   }
 
-  goToWalkthrough() {
-    this._router.navigate(["walkthrough"]);
+  goToWalkthrough(client) {
+    this._router.navigate(["walkthrough/" + client.id]);
   }
 }
