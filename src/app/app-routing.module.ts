@@ -14,6 +14,11 @@ const routes: Routes = [
     component: WalkthroughComponent,
     canActivate: [AppGuard]
   },
+  {
+    path: "walkthrough/:id",
+    component: WalkthroughComponent,
+    canActivate: [AppGuard]
+  },
   { path: "movelist", component: MovelistComponent, canActivate: [AppGuard] },
   { path: "", component: HomeComponent, canActivate: [AppGuard] }
 ];

@@ -7,7 +7,7 @@ import { FullWalkthrough } from "../models/fullWalkthrough.model";
 import { FullRoom } from "../models/fullRoom.model";
 import { SaveWalkthroughService } from "../services/save-walkthrough.service";
 import { Router } from "@angular/router";
-import { RouterModule } from "@angular/router";
+import { RouterModule, ActivatedRoute } from "@angular/router";
 import { Item } from "../models/item.model";
 
 @Component({
@@ -20,38 +20,10 @@ export class WalkthroughComponent implements OnInit {
   started: boolean = true;
 
   rooms: FullRoom[] = [];
-  //   {
-  //     name: "Family Room",
-  //     items: [
-  //       { name: "Loveseat", selected: false },
-  //       { name: "Futon", selected: false },
-  //       { name: "Side Chair", selected: false },
-  //       { name: "Side Table", selected: false },
-  //       { name: "Coffee Table", selected: false },
-  //       { name: "TV Stand", selected: false },
-  //       { name: "Entertainment Center", selected: false }
-  //     ]
-  //   },
-  //   {
-  //     name: "Kitchen",
-  //     items: [
-  //       { name: "Dining Table", selected: false },
-  //       { name: "Dining Chairs", selected: false },
-  //       { name: "Bar Stools", selected: false }
-  //     ]
-  //   },
-  //   {
-  //     name: "Bathroom",
-  //     items: [
-  //       { name: "Shower Curtain", selected: false },
-  //       { name: "Towels", selected: false },
-  //       { name: "Rod", selected: false }
-  //     ]
-  //   }
-  // ];
 
   constructor(
     private _router: Router,
+    private _route: ActivatedRoute,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     public walkthroughService: WalkthroughService,
@@ -59,6 +31,7 @@ export class WalkthroughComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    const walkthroughId = this._route.snapshot.params["id"];
     this.walkthroughService
       .getWalkthroughSource()
       .then((result: FullWalkthrough) => {

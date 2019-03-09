@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { SaveWalkthroughService } from "../services/save-walkthrough.service";
 import { ActivatedRoute } from "@angular/router";
 
+
 @Component({
   selector: "fd-movelist",
   templateUrl: "./movelist.component.html",
