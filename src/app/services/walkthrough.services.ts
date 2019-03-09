@@ -48,7 +48,7 @@ export class WalkthroughService {
                       new Item(
                         resItem.name,
                         resItem.attributes,
-                        resItem.isRateable,
+                        resItem.isRankable,
                         resItem.comments
                       )
                     );

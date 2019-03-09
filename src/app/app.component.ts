@@ -27,6 +27,11 @@ export class AppComponent implements OnInit {
   goHome() {
     this._router.navigate([""]);
   }
+
+  checkIfOnline() {
+
+  }
+  
   ngOnInit() {
     var test = this.walkthroughService.getWalkthroughSource().then(res => {
       console.log(res);
