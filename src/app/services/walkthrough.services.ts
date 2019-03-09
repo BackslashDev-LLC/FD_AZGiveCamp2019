@@ -50,7 +50,8 @@ export class WalkthroughService {
                           resItem.name,
                           resItem.attributes,
                           resItem.isRankable,
-                          resItem.comments
+                          resItem.comments,
+                          resItem.rating
                         )
                       );
                     }

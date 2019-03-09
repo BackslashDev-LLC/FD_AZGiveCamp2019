@@ -6,12 +6,14 @@ export class Item {
     name: string,
     attributes: string[],
     isRankable: boolean,
-    comments: string
+    comments: string,
+    rating: number
   ) {
     this.name = name;
     this.attributes = (attributes || []).map(a => new ItemAttribute(a));
     this.isRankable = isRankable;
     this.comments = comments;
+    this.rating = rating;
   }
   name: string;
   attributes: ItemAttribute[];
