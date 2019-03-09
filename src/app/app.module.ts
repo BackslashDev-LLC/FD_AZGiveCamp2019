@@ -12,13 +12,15 @@ import { WalkthroughComponent } from "./walkthrough/walkthrough.component";
 import { MovelistComponent } from "./movelist/movelist.component";
 import { HomeComponent } from "./home/home.component";
 import { ControlsModule } from "./controls/controls.module";
+import { DetailComponent } from "./walkthrough/_/detail/detail.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     WalkthroughComponent,
     MovelistComponent,
-    HomeComponent
+    HomeComponent,
+    DetailComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +33,7 @@ import { ControlsModule } from "./controls/controls.module";
     ControlsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DetailComponent]
 })
 export class AppModule {}
