@@ -3,6 +3,7 @@
     <bsd-text-input
       label="Family Name"
       [(ngModel)]="familyName"
+      (keyup.enter)="start()"
     ></bsd-text-input>
   </div>
   <div class="col-2">
