@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material";
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from "@angular/material";
 import { DetailComponent } from "./_/detail/detail.component";
 import { WalkthroughService } from "../services/walkthrough.services";
 import { FullWalkthrough } from "../models/fullWalkthrough.model";
@@ -69,7 +69,7 @@ export class WalkthroughComponent implements OnInit {
 
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
-      duration: 2000,
+      duration: 2000
     });
   }
 
@@ -117,6 +117,6 @@ export class WalkthroughComponent implements OnInit {
     completedWalkthrough.dateTime = new Date();
     console.log(completedWalkthrough);
     this.saveWalkthroughService.saveWalkthrough(completedWalkthrough);
-    this._router.navigate(["home"]);
+    this._router.navigate([""]);
   }
 }
