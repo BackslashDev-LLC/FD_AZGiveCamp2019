@@ -16,8 +16,6 @@ export class MovelistComponent implements OnInit {
     this.savedWalkthroughService
     .getSavedWalkthroughById(this.activatedRoute.snapshot.paramMap.get("id"))
     .subscribe(walkthrough => {
-      this.moveListInput = walkthrough;
-      console.log(this.moveListInput);
-    });
+      this.moveListInput = walkthrough;    });
   }
 }
