@@ -12,7 +12,6 @@ import { WalkthroughComponent } from "./walkthrough/walkthrough.component";
 import { MovelistComponent } from "./movelist/movelist.component";
 import { HomeComponent } from "./home/home.component";
 import { ControlsModule } from "./controls/controls.module";
-import { Router } from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -34,10 +33,4 @@ import { Router } from "@angular/router";
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-  constructor(private _router: Router) {}
-
-  startWalkthrough() {
-    this._router.navigate(["walkthrough"]);
-  }
-}
+export class AppModule {}
