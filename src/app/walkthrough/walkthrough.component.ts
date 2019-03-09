@@ -4,6 +4,8 @@ import { DetailComponent } from "./_/detail/detail.component";
 import { WalkthroughService } from "../services/walkthrough.services";
 import { FullWalkthrough } from "../models/fullWalkthrough.model";
 import { FullRoom } from "../models/fullRoom.model";
+import { SaveWalkthroughService } from "../services/save-walkthrough.service";
+import { RouterModule } from "@angular/router";
 
 @Component({
   selector: "fd-walkthrough",
@@ -47,7 +49,8 @@ export class WalkthroughComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    public walkthroughService: WalkthroughService
+    public walkthroughService: WalkthroughService,
+    public saveWalkthroughService: SaveWalkthroughService
   ) {}
 
   ngOnInit() {
@@ -72,5 +75,11 @@ export class WalkthroughComponent implements OnInit {
 
   start() {
     this.started = true;
+  }
+  complete() {
+    var completedWalkthrough = new FullWalkthrough();
+    completedWalkthrough.key = this.familyName;
+    //     completedWalkthrough.rooms =
+    // this.saveWalkthroughService.saveWalkthrough()
   }
 }

@@ -44,14 +44,16 @@ export class WalkthroughService {
                   })
                 ).then(resItems =>
                   resItems.forEach((resItem: Item) => {
-                    wtRoom.items.push(
-                      new Item(
-                        resItem.name,
-                        resItem.attributes,
-                        resItem.isRateable,
-                        resItem.comments
-                      )
-                    );
+                    if (resItem) {
+                      wtRoom.items.push(
+                        new Item(
+                          resItem.name,
+                          resItem.attributes,
+                          resItem.isRankable,
+                          resItem.comments
+                        )
+                      );
+                    }
                   })
                 );
                 resolve(wtRoom);

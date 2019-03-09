@@ -1,13 +1,13 @@
 export class Item {
-    public constructor(name: string, attributes:string[], isRateable:boolean, comments: string){
+    public constructor(name: string, attributes:string[], isRankable:boolean, comments: string){
       this.name = name;
       this.attributes = attributes;
-      this.isRateable = isRateable;
+      this.isRankable = isRankable;
       this.comments = comments;
     }
     name: string;
     attributes: string[];
-    isRateable: boolean;
+    isRankable: boolean;
     comments: string;
     rating: number;
     public static getFireBase(fullItems: Item[]){
@@ -17,7 +17,7 @@ export class Item {
           var item = {
             name: tempItem.name,
             attributes: tempItem.attributes,
-            isRateable: tempItem.isRateable,
+            isRankable: tempItem.isRankable,
             rating: tempItem.rating
           }
           items.push(item);
