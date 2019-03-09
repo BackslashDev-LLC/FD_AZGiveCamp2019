@@ -18,6 +18,9 @@ export class DetailComponent implements OnInit {
   }
 
   ngOnInit() {}
+  remove() {
+    this.item.selected = false;
+  }
   close() {
     this.item.selected = true;
   }

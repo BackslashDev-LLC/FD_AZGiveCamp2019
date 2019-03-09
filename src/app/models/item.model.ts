@@ -26,7 +26,8 @@ export class Item {
         name: tempItem.name,
         attributes: tempItem.attributes.map(a => a.name),
         isRankable: tempItem.isRankable,
-        rating: tempItem.rating || 0
+        rating: tempItem.rating || 0,
+        comments: tempItem.comments
       };
       items.push(item);
     }
