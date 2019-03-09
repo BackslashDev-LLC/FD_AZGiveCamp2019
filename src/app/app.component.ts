@@ -2,9 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { WalkthroughService } from "../app/services/walkthrough.services";
 import { SaveWalkthroughService } from "./services/save-walkthrough.service";
-import {DateAdapter} from "@angular/material";
+import { DateAdapter } from "@angular/material";
 import { AuthService } from "../app/auth/auth.service";
-
 
 @Component({
   selector: "fd-root",
@@ -20,7 +19,6 @@ export class AppComponent implements OnInit {
     public walkthroughService: WalkthroughService
   ) {}
 
-
   startWalkthrough() {
     this._router.navigate(["walkthrough"]);
   }
@@ -29,12 +27,8 @@ export class AppComponent implements OnInit {
     this._router.navigate([""]);
   }
   ngOnInit() {
-    var test = this.walkthroughService
-      .getWalkthroughById("1")
-      .subscribe(res => {
-        console.log(res);
-      });
-
+    var test = this.walkthroughService.getWalkthroughSource().then(res => {
+      console.log(res);
+    });
   }
-
 }
