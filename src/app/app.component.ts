@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { AuthService } from  '../app/auth/auth.service';
 import {WalkthroughService} from "../app/services/walkthrough.services";
 import {DateAdapter} from "@angular/material";
 
@@ -12,7 +13,7 @@ import {DateAdapter} from "@angular/material";
 export class AppComponent implements OnInit {
   title = "furnishing-dignity";
 
-  constructor(private _router: Router, public walkthroughService: WalkthroughService) {}
+  constructor(private _router: Router, private authService: AuthService, public walkthroughService: WalkthroughService) {}
 
   startWalkthrough() {
     this._router.navigate(["walkthrough"]);
