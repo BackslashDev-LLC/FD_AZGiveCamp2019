@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
+import { Item } from "src/app/models/item.model";
 
 @Component({
   selector: "fd-detail",
@@ -7,7 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
   styleUrls: ["./detail.component.scss"]
 })
 export class DetailComponent implements OnInit {
-  item: any;
+  item: Item;
 
   constructor(
     public dialogRef: MatDialogRef<DetailComponent>,
@@ -17,4 +18,7 @@ export class DetailComponent implements OnInit {
   }
 
   ngOnInit() {}
+  close() {
+    this.item.selected = true;
+  }
 }

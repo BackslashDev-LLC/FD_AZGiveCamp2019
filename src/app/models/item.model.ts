@@ -1,3 +1,5 @@
+import { ItemAttribute } from "../models/itemAttribute.model";
+
 export class Item {
   public constructor(
     name: string,
@@ -6,12 +8,12 @@ export class Item {
     comments: string
   ) {
     this.name = name;
-    this.attributes = attributes;
+    this.attributes = (attributes || []).map(a => new ItemAttribute(a));
     this.isRankable = isRankable;
     this.comments = comments;
   }
   name: string;
-  attributes: string[];
+  attributes: ItemAttribute[];
   isRankable: boolean;
   comments: string;
   rating: number;
@@ -22,9 +24,9 @@ export class Item {
       var tempItem = fullItems[i];
       var item = {
         name: tempItem.name,
-        attributes: tempItem.attributes,
+        attributes: tempItem.attributes.map(a => a.name),
         isRankable: tempItem.isRankable,
-        rating: tempItem.rating
+        rating: tempItem.rating || 0
       };
       items.push(item);
     }
