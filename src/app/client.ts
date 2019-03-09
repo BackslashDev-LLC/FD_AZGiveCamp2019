@@ -1,12 +1,11 @@
-import {FullWalkthrough} from "./models/fullWalkthrough.model";
+import { FullWalkthrough } from "./models/fullWalkthrough.model";
 
 export class Client {
-    id: string;
-    key: string;
-    dateTime: Date;
+  id: string;
+  key: string;
+  dateTime: Date;
 
-
-  fromFirebase(id: string, obj: any): Client {
+  public static fromFirebase(id: string, obj: any): Client {
     const w = new Client();
 
     w.key = obj.key;
@@ -21,4 +20,4 @@ export class Client {
 
     return w;
   }
-  }
+}
