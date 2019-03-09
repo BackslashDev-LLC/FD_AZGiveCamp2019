@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { SaveWalkthroughService } from "../services/save-walkthrough.service";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "fd-movelist",
@@ -36,9 +38,12 @@ export class MovelistComponent implements OnInit {
     }
   ];
 
-  constructor() {}
+  constructor(private savedWalkthroughService: SaveWalkthroughService, private activatedRoute: ActivatedRoute) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.savedWalkthroughService.getSavedWalkthroughById(this.activatedRoute.snapshot.paramMap.get("id"))
 
-  
+  }
+
+
 }

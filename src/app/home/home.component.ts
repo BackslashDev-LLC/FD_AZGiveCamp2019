@@ -25,19 +25,20 @@ export class HomeComponent implements OnInit {
   ngOnInit() {}
 
   search() {
-   this.saveWalkthroughService.getSavedWalkthrough()
-     .subscribe(res => {
-     var walkthroughs = [];
-       console.log(res);
-     for(var i =0; i < res.length; i++){
-       let walk = res[i] as FullWalkthrough;
+    this.saveWalkthroughService.getSavedWalkthrough().subscribe(res => {
+      const walkthroughs = [];
+      console.log(res);
+      for (let i = 0; i < res.length; i++) {
+        const walk = new FullWalkthrough().fromFirebase(res[i]);
 
-       if(walk.key.toLowerCase().indexOf(this.searchTerm.toLowerCase()) !== -1){
-         walkthroughs.push(walk);
-       }
-     }
-       this.searchResults = walkthroughs;
-   });
+        if (
+          walk.key.toLowerCase().indexOf(this.searchTerm.toLowerCase()) !== -1
+        ) {
+          walkthroughs.push(walk);
+        }
+      }
+      this.searchResults = walkthroughs;
+    });
 
     const initialSelection = [];
     const allowMultiSelect = false;
@@ -45,8 +46,6 @@ export class HomeComponent implements OnInit {
       allowMultiSelect,
       initialSelection
     );
-    //console.log(this.searchResults[0].name);
-    //console.log(this.searchResults[1].name);
   }
 
   goToMoveList() {
