@@ -74,5 +74,11 @@ mat-list {
     padding-left: 10px;
     background-color: #b0ab6a;
     border-radius: 10px;
+    width: 50%;
+
+    &:focus {
+      border: 1px solid rgba(0, 0, 0, 0.8);
+      outline: none;
+    }
   }
 }
