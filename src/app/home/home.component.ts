@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Client } from '../client';
 import { SelectionModel } from "@angular/cdk/collections";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'fd-home',
@@ -14,9 +15,7 @@ export class HomeComponent implements OnInit {
   displayedColumns: string[] = ["name", "date"];
   selection: SelectionModel<Client>;
 
-
-  
-  constructor() { }
+  constructor(private _router: Router) { }
   result1: Client = {
     name: "AbleB",
     walkthroughDate: new Date("2/3/2019")
@@ -41,6 +40,7 @@ export class HomeComponent implements OnInit {
   onSelect(client: Client): void {
     this.selectedClient = client;
     console.log(client.name + "selected");
+    this.goToMoveList();
   }
 
   isAllSelected() {
@@ -54,5 +54,10 @@ export class HomeComponent implements OnInit {
     this.isAllSelected() ?
         this.selection.clear() :
         this.searchResults.forEach(row => this.selection.select(row));
+  }
+
+  
+  goToMoveList() {
+    this._router.navigate(["movelist", this.selectedClient]);
   }
 }
