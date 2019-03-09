@@ -34,7 +34,7 @@
         *ngIf="
           item.selected &&
           (item.hasAttributesSelected() ||
-            (item.comments && item.comments.length > 0))
+            (item.comments && item.comments.length > 0) || item.rating !== 0)
         "
       >
         {{ item.comments }} {{ item.selectedAttributes() }} {{item.rating}}
