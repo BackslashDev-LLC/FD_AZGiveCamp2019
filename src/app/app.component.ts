@@ -26,8 +26,5 @@ export class AppComponent implements OnInit {
 
      console.log(res);
    })
-
-    var more = this.walkthroughService.getEntireWalkthrough("1");
-   console.log(more);
   }
 }
