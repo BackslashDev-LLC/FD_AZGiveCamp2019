@@ -1,4 +1,5 @@
 import { ItemAttribute } from "../models/itemAttribute.model";
+import * as _ from "lodash";
 
 export class Item {
   public constructor(
@@ -18,6 +19,31 @@ export class Item {
   comments: string;
   rating: number;
   selected: boolean;
+
+  hasAttributesSelected() {
+    return _.some(this.attributes, (a: any) => {
+      return a.selected;
+    });
+  }
+
+  selectedAttributes() {
+    return _.reduce(
+      this.attributes,
+      (s: string, a: any) => {
+        if (a.selected) {
+          if (s.trim.length > 0) {
+            return s + ", " + a.name;
+          }
+
+          return a.name;
+        }
+
+        return s;
+      },
+      ""
+    );
+  }
+
   public static getFireBase(fullItems: Item[]) {
     var items = [];
     for (var i = 0; i < fullItems.length; i++) {
