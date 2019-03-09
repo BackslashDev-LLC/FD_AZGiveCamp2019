@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Client } from '../client';
 import { SelectionModel } from "@angular/cdk/collections";
 import { Router } from "@angular/router";
+import { WalkthroughService } from '../services/walkthrough.services';
 
 @Component({
   selector: 'fd-home',
@@ -15,7 +16,7 @@ export class HomeComponent implements OnInit {
   displayedColumns: string[] = ["name", "date"];
   selection: SelectionModel<Client>;
 
-  constructor(private _router: Router) { }
+  constructor(private _router: Router, public walkthroughService: WalkthroughService) { }
   result1: Client = {
     name: "AbleB",
     walkthroughDate: new Date("2/3/2019")
@@ -29,6 +30,7 @@ export class HomeComponent implements OnInit {
   }
 
   search() {
+   // this.walkthroughService.
     this.searchResults = [this.result1, this.result2];
     const initialSelection = [];
     const allowMultiSelect = false;
