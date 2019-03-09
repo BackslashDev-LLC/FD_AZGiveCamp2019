@@ -31,7 +31,7 @@ export class Item {
       this.attributes,
       (s: string, a: any) => {
         if (a.selected) {
-          if (s.trim.length > 0) {
+          if (s.trim().length > 0) {
             return s + ", " + a.name;
           }
 
