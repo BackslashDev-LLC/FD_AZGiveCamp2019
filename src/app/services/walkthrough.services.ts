@@ -43,7 +43,7 @@ export class WalkthroughService {
                     });
                   })
                 ).then(resItems =>
-                  resItems.forEach((resItem: Item) => {
+                  resItems.forEach((resItem: any) => {
                     if (resItem) {
                       wtRoom.items.push(
                         new Item(

@@ -74,7 +74,7 @@ export class WalkthroughComponent implements OnInit {
   }
 
   openDetail(w: Item) {
-    w.selected = true;
+    //w.selected = true;
 
     const dialogRef = this.dialog.open(DetailComponent, {
       width: "600px",
@@ -86,7 +86,7 @@ export class WalkthroughComponent implements OnInit {
 
   addRoom(room: any) {
     let newRoom = JSON.parse(JSON.stringify(room));
-    newRoom.items.map(item => item.selected = false);
+    newRoom.items.map(item => (item.selected = false));
     this.rooms.splice(this.rooms.indexOf(room) + 1, 0, newRoom);
     this.openSnackBar(newRoom.name + " Added!", "");
   }
@@ -101,9 +101,21 @@ export class WalkthroughComponent implements OnInit {
       .filter(a => a.items.some(b => b.selected))
       .map(a => {
         const room = new FullRoom(a.name);
-        room.items = a.items.filter(a => a.selected);
+        room.items = a.items
+          .filter(a => a.selected)
+          .map(
+            a =>
+              new Item(
+                a.name,
+                a.attributes.filter(b => b.selected).map(b => b.name),
+                a.isRankable,
+                a.comments
+              )
+          );
         return room;
       });
+    completedWalkthrough.dateTime = new Date();
+    console.log(completedWalkthrough);
     this.saveWalkthroughService.saveWalkthrough(completedWalkthrough);
     this._router.navigate(["home"]);
   }
