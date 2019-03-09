@@ -1,0 +1,10 @@
+<div class="rating">
+  <div class="star-ratings">
+    <div class="star-ratings top" [style.width]="score + '%'">
+      <mat-icon *ngFor="let i of range" (click)="rate(i + 1)">star</mat-icon>
+    </div>
+    <div class="star-ratings bottom">
+      <mat-icon *ngFor="let i of range" (click)="rate(i + 1)">star_border</mat-icon>
+    </div>
+  </div>
+</div>

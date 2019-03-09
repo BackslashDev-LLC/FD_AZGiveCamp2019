@@ -1,0 +1,33 @@
+@import '../../../assets/styles/bootstrap/mixins/breakpoints';
+@import '../../../assets/styles/imports/mixins';
+@import '../../../assets/styles/imports/variables';
+
+button.button.primary.submit-button {
+  @include transition(width);
+  height: rem-calc(48px);
+  vertical-align: top;
+
+  &.full {
+    width: 100%;
+  }
+
+  &.is-processing {
+    //width: rem-calc(60px);
+    padding: 0 rem-calc(16px) 0 rem-calc(10px);
+  }
+
+  // Apply :hover effect on screens > 992px
+  @include media-breakpoint-up(lg) {
+    .mat-button-focus-overlay {
+      background-color: rgba(255, 255, 255, 0.12);
+    }
+
+    &:hover .mat-button-focus-overlay {
+      opacity: 1;
+    }
+
+    &[disabled]:hover .mat-button-focus-overlay {
+      opacity: 0;
+    }
+  }
+}

@@ -1,0 +1,228 @@
+<div class="main with-toolbar container-fluid">
+  <div class="row">
+    <div class="col-md-4 col-xl-3">
+      <bsd-text-input name="textInput"
+                     [label]="'Text Input'"
+                     placeholderText="Enter text..."
+                     [(ngModel)]="textInput"
+                     [isRequired]="true"
+                     [isInvalid]="!textInput"></bsd-text-input>
+    </div>
+    <div class="col-md-4 col-xl-3">
+      <bsd-text-input name="textInput2"
+                     [label]="'Text Input w/ Left Icon'"
+                     placeholderText="Enter text..."
+                     [(ngModel)]="textInput2"
+                     [iconType]="'account_circle'"
+                     [iconAlignment]="'left'"></bsd-text-input>
+    </div>
+    <div class="col-md-4 col-xl-3">
+      <bsd-text-input name="textInput2"
+                     [label]="'Text Input w/ Right Icon'"
+                     placeholderText="Enter text..."
+                     [(ngModel)]="textInput3"
+                     [iconType]="'lock_outline'"
+                     [iconAlignment]="'right'"></bsd-text-input>
+    </div>
+    <div class="col-md-4 col-xl-3">
+      <bsd-select name="selectMenu"
+                 [label]="'Select Menu'"
+                 [items]="testSelectItems"
+                 [(ngModel)]="selectedItem"
+                 [placeholderText]="'Select an Item...'"
+                 [isRequired]="true"
+                 [isInvalid]="!selectedItem"></bsd-select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <bsd-text-area name="textArea"
+                    [label]="'Text Area'"
+                    [placeholderText]="'Enter a description...'"
+                    [rows]="4"
+                    [(ngModel)]="textArea"
+                    [hasCharCount]="true"
+                    [charCount]="textArea.length"
+                    [charCountMax]="800"
+                    [hintText]="'This is a hint text for the text-area.'"
+                    [isRequired]="true"
+                    [isInvalid]="!textArea"></bsd-text-area>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <bsd-radio-set [name]="'radioSet'"
+                    [labelText]="'Radio Set'"
+                    [isRequired]="false"
+                    [nameValueOptions]="radioOptions"
+                    [(ngModel)]="selectedRadioOption"></bsd-radio-set>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <bsd-number-input name="numberInput"
+                       [label]="'Number Input'"
+                       [placeholderText]="'Enter a number...'"
+                       [(ngModel)]="numberInput"
+                       [isRequired]="true"
+                       [isInvalid]="!numberInput"></bsd-number-input>
+    </div>
+    <div class="col-md-4">
+      <bsd-number-input name="numberInput2"
+                       [label]="'Number w/ Icon'"
+                       [placeholderText]="'Enter a number...'"
+                       [iconType]="'attach_money'"
+                       [(ngModel)]="numberInput2"></bsd-number-input>
+    </div>
+    <div class="col-md-4 col-xl-3">
+      <bsd-number-input name="numberInput3"
+                       [label]="'W/ Icon, Align Right'"
+                       [placeholderText]="'0.00'"
+                       [iconType]="'attach_money'"
+                       [isRightAligned]="true"
+                       [(ngModel)]="numberInput3"></bsd-number-input>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <bsd-checkbox name="checkBox"
+                   [(ngModel)]="checked"
+                   [label]="'Checkbox Label'"></bsd-checkbox>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 col-xl-4">
+      <bsd-file-input name="fileUpload"
+                     [label]="'Upload an Image'"
+                     [placeholderText]="'PNG, JPG and GIF are accepted'"></bsd-file-input>
+    </div>    
+    <div class="col-md-6 col-xl-4">
+      <bsd-date-time name="selectedDateRange"
+                    type="text"
+                    label="Select a Date Range"
+                    [(ngModel)]="selectedDateRange"
+                    [calendarMode]="'range'"
+                    [attr.altInput]="true"
+                    [dateFormat]="'F j, Y'"></bsd-date-time>
+    </div>
+    <div class="col-md-6 col-xl-4">
+      <bsd-date-time name="selectedDateAndTime"
+                    type="text"
+                    label="Select a Date and Time"
+                    [(ngModel)]="selectedDateAndTime"
+                    [calendarMode]="'single'"
+                    [enableTime]="true"
+                    [dateFormat]="'Y-m-d H:i'"></bsd-date-time>
+    </div>
+  </div>
+
+  <div class="submit-row">
+    <button mat-button>Cancel</button>
+    <button mat-flat-button color="primary">Save</button>
+  </div>
+  <div class="submit-row">
+    <button mat-button>Cancel</button>
+    <bsd-submit-button buttonText="Submit Button" [isProcessing]="saving" (onBtnClick)="save()"></bsd-submit-button>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-xl-6">
+      <h6 class="subtitle">Basic Buttons</h6>
+      <div class="button-row">
+        <button mat-button>Basic</button>
+        <button mat-button color="primary">Primary</button>
+        <button mat-button color="accent">Accent</button>
+        <button mat-button color="warn">Warn</button>
+        <button mat-button disabled>Disabled</button>
+        <a mat-button routerLink=".">Link</a>
+      </div>
+    </div>
+
+    <div class="col-12 col-xl-6">
+      <h6 class="subtitle">Flat Buttons</h6>
+      <div class="button-row">
+        <button mat-flat-button color="primary">Primary</button>
+        <button mat-flat-button color="accent">Accent</button>
+        <button mat-flat-button color="warn">Warn</button>
+        <button mat-flat-button disabled>Disabled</button>
+      </div>
+    </div>
+
+    <div class="col-12 col-xl-6">
+      <h6 class="subtitle">Stroked Buttons</h6>
+      <div class="button-row">
+        <button mat-stroked-button>Basic</button>
+        <button mat-stroked-button color="primary">Primary</button>
+        <button mat-stroked-button color="accent">Accent</button>
+        <button mat-stroked-button color="warn">Warn</button>
+        <button mat-stroked-button disabled>Disabled</button>
+      </div>
+    </div>
+
+    <div class="col-12 col-xl-6">
+      <h6 class="subtitle">Icon Buttons</h6>
+      <div class="button-row">
+        <button mat-icon-button>
+          <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+        </button>
+        <button mat-icon-button color="primary">
+          <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+        </button>
+        <button mat-icon-button color="accent">
+          <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+        </button>
+        <button mat-icon-button color="warn">
+          <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+        </button>
+        <button mat-icon-button disabled>
+          <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="col-12 col-xl-6">
+      <h6 class="subtitle">Fab Buttons</h6>
+      <div class="button-row">
+        <button mat-fab color="primary">
+          <mat-icon aria-label="icon-button with apps icon">apps</mat-icon>
+        </button>
+        <button mat-fab color="accent">
+          <mat-icon aria-label="icon-button with apps icon">apps</mat-icon>
+        </button>
+        <button mat-fab color="warn">
+          <mat-icon aria-label="icon-button with apps icon">apps</mat-icon>
+        </button>
+        <button mat-fab disabled>
+          <mat-icon aria-label="icon-button with apps icon">apps</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="col-12 col-xl-6">
+      <h6 class="subtitle">Mini Fab Buttons</h6>
+      <div class="button-row">
+        <button mat-mini-fab color="primary">
+          <mat-icon aria-label="icon-button with a menu icon">menu</mat-icon>
+        </button>
+        <button mat-mini-fab color="accent">
+          <mat-icon aria-label="icon-button with a menu icon">menu</mat-icon>
+        </button>
+        <button mat-mini-fab color="warn">
+          <mat-icon aria-label="icon-button with a menu icon">menu</mat-icon>
+        </button>
+        <button mat-mini-fab disabled>
+          <mat-icon aria-label="icon-button with a menu icon">menu</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <mat-divider></mat-divider>
+    </div>
+  </div>
+</div>

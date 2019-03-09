@@ -1,0 +1,14 @@
+@import '../../../assets/styles/bootstrap/mixins/breakpoints';
+@import '../../../assets/styles/imports/mixins';
+@import '../../../assets/styles/imports/variables';
+
+svg {
+  width: rem-calc(24px);
+  height: rem-calc(24px);
+}
+
+:host-context(.leave-room) {
+  svg path {
+    fill: $accent-color;
+  }
+}

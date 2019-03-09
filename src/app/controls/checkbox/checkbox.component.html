@@ -1,0 +1,4 @@
+<label [class.small]="isSmallCheckbox" [class.disabled]="isDisabled">
+  <input type="checkbox" [checked]="checked" (change)="onChange(cb.checked)" #cb tabindex="0" [disabled]="isDisabled"/>
+  <span>{{label}}</span>
+</label>

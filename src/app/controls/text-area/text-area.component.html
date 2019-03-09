@@ -1,0 +1,33 @@
+<div class="cf-textfield textarea clearfix"
+     [class.required]="isRequired"
+     [class.invalid]="isInvalid"
+     [class.extra-bottom-margin]="hintText || hasCharCount">
+  <label *ngIf="label">{{label}}</label>  
+    <textarea class="cf-textfield__input"
+    type="text"
+    rows="{{rows}}"
+    [value]="value"
+    (input)="inputChanged($event.target.value)"
+    placeholder="{{placeholderText}}"
+    [disabled]="isDisabled"
+    [readonly]="isReadOnly"
+    [attr.maxlength]="charCountMax"
+    [class.ng-invalid]="isInvalid"></textarea>
+    <span [class.extra-bottom]="hintText || hasCharCount" class="required-text" *ngIf="isRequired">Required</span>  
+  <!--
+  <textarea *ngIf="mentionItems"
+            class="cf-textfield__input"
+            type="text"
+            rows="{{rows}}"
+            [value]="value"
+            (input)="inputChanged($event.target.value)"
+            placeholder="{{placeholderText}}"
+            [disabled]="isDisabled"
+            [readonly]="isReadOnly"
+            [mention]="mentionItems"
+            [attr.maxlength]="charCountMax"
+            [class.ng-invalid]="isInvalid"></textarea>
+  -->  
+  <span class="hint char-count" *ngIf="hasCharCount" [class.is-disabled]="isDisabled">{{charCount ? charCount : 0}} <span *ngIf="charCountMax">/ {{charCountMax}} </span>characters</span>
+  <span class="hint" *ngIf="hintText" [class.is-disabled]="isDisabled">{{hintText}}</span>
+</div>

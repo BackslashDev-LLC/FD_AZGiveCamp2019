@@ -1,0 +1,181 @@
+@import '../../../assets/styles/bootstrap/mixins/breakpoints';
+@import '../../../assets/styles/imports/mixins';
+@import '../../../assets/styles/imports/variables';
+
+label {
+  @include transition(color);
+  display: inline-block;
+  position: relative;
+  min-height: rem-calc(48px);
+  margin: 0 0 rem-calc(24px);
+  padding-left: 0;
+  font-size: rem-calc(16px);
+  font-weight: $input-label-font-weight;
+  cursor: pointer;
+
+  &:hover {
+    span {
+      color: $input-text-color;
+
+      //&:before {
+      //  border-color: $input-border-color-hovered;
+      //}
+    }
+  }
+
+  &.disabled {
+    cursor: default;
+  }
+
+  span {
+    @include transition(color);
+    display: inline-block;
+    height: rem-calc(48px);
+    margin-left: rem-calc(24px);
+    padding-top: 0;
+    color: $radio-checkbox-text-color;
+    line-height: rem-calc(48px);
+
+    &:before {
+      content: ' ';
+      @include transition(border);
+      @include radius(2px);
+      position: absolute;
+      top: 15px;
+      left: 12px;
+      -webkit-appearance: none;
+      background: transparent;
+      border: 1px solid $input-border-color;
+      width: 18px;
+      height: 18px;
+    }
+
+    &:after {
+      content: ' ';
+      @include transition(border);
+      @include radius(2px);
+      position: absolute;
+      top: 15px;
+      left: 12px;
+      width: 18px;
+      height: 18px;
+      display: block;
+      z-index: 1;
+      background: $gray600 url("data:image/svg+xml,%3Csvg%20id%3D%22Layer_1%22%20data-name%3D%22Layer%201%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2014%2010.67%22%3E%0A%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%23ffffff%3B%7D%3C/style%3E%3C/defs%3E%0A%3Cpath%20class%3D%22cls-1%22%20d%3D%22M6.6%2C12.31%2C3.28%2C9%2C2.15%2C10.11%2C6.6%2C14.56%2C16.15%2C5%2C15%2C3.88Z%22%20transform%3D%22translate%28-2.15%20-3.88%29%22/%3E%0A%3C/svg%3E") no-repeat;
+      background-size: 11px 8px;
+      background-position: 50% 45%;
+      border: 1px solid $gray600;
+      opacity: 0;
+    }
+  }
+
+  input[type=checkbox] {
+    opacity: 0;
+    float: left;
+
+    &:focus + span:before {
+      border-color: $gray200;
+    }
+
+    &:checked {
+      + span {
+        color: $gray200;
+
+        &:after {
+          opacity: 1;
+        }
+      }
+    }
+
+    &:disabled + span:before {
+      background: $disabled-input-background;
+    }
+
+    &:disabled:checked + span {
+      color: $radio-checkbox-text-color;
+
+      &:after {
+        background: $disabled-input-background url("data:image/svg+xml,%3Csvg%20id%3D%22Layer_1%22%20data-name%3D%22Layer%201%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2014%2010.67%22%3E%0A%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%23CCC%3B%7D%3C/style%3E%3C/defs%3E%0A%3Cpath%20class%3D%22cls-1%22%20d%3D%22M6.6%2C12.31%2C3.28%2C9%2C2.15%2C10.11%2C6.6%2C14.56%2C16.15%2C5%2C15%2C3.88Z%22%20transform%3D%22translate%28-2.15%20-3.88%29%22/%3E%0A%3C/svg%3E") no-repeat;
+        background-size: 14px 11px;
+        background-position: 50% 45%;
+        border-color: $input-border-color;
+      }
+    }
+  }
+
+  &.small {
+    span {
+      height: rem-calc(18px);
+      line-height: rem-calc(18px);
+    }
+  }
+}
+
+:host-context(.checkbox-group__custom-list-item) {
+  label {
+    position: relative;
+    min-height: rem-calc(32px);
+    margin: 0 rem-calc(10px) rem-calc(10px) 0;
+    font-size: rem-calc(14px);
+    font-weight: $input-label-font-weight;
+    cursor: pointer;
+    -webkit-transition: none;
+    -moz-transition:    none;
+    -ms-transition:     none;
+    -o-transition:      none;
+    transition:         none;
+
+    span {
+      @include transition(all);
+      @include radius(2px);
+      display: inline-block;
+      height: rem-calc(30px);
+      margin-left: 0;
+      padding: rem-calc(5px) rem-calc(14px);
+      color: $radio-checkbox-text-color;
+      line-height: rem-calc(18px);
+      background: transparent;
+      border: 1px solid $border-color;
+
+      &:hover {
+        border-color: $primary-color;
+        color: $primary-color;
+      }
+
+      &:before {
+        content: none;
+        display: none;
+      }
+
+      &:after {
+        content: none;
+        display: none;
+      }
+    }
+
+    input[type=checkbox] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      float: none;
+
+      &:focus + span:before {
+        border-color: $primary-color;
+        color: $primary-color;
+      }
+
+      &:checked {
+        + span {
+          color: $white;
+          border-color: $primary-color;
+          background: $primary-color;
+
+          &:after {
+            opacity: 0;
+          }
+        }
+      }
+    }
+  }
+}

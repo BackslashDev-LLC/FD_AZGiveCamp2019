@@ -1,0 +1,19 @@
+@import '../../../assets/styles/bootstrap/mixins/breakpoints';
+@import '../../../assets/styles/imports/mixins';
+@import '../../../assets/styles/imports/variables';
+
+.button-row {
+  width: 100%;
+  margin-bottom: rem-calc(24px);
+
+  button,
+  a {
+    margin-right: rem-calc(12px);
+    margin-bottom: rem-calc(12px);
+  }
+
+  > button:last-child,
+  > a:last-child {
+    margin-right: 0;
+  }
+}

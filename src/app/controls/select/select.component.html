@@ -1,0 +1,12 @@
+<div class="cf-selectfield"
+     [class.required]="isRequired"
+     [class.invalid]="isInvalid">
+  <label *ngIf="label">{{label}}</label>
+  <select (change)="onChange(select)" [disabled]="isDisabled" [class.read-only]="isReadOnly" #select>
+    <option value="" [selected]="useDefault">{{placeholderText}}</option>
+    <option *ngFor="let item of items" [ngValue]="getValue(item)" [selected]="getValue(item) == _value" #opt>
+      {{getText(item)}}
+    </option>
+  </select>
+  <span class="required-text" *ngIf="isRequired">Required</span>
+</div>
