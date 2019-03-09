@@ -25,6 +25,10 @@ export class HomeComponent implements OnInit {
   ngOnInit() {}
 
   search() {
+    if (!this.searchTerm)
+    {
+      this.searchTerm = "";
+    }
     this.saveWalkthroughService.getSavedWalkthrough().subscribe(res => {
       const walkthroughs = [];
       console.log(res);

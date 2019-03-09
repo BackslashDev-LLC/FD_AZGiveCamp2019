@@ -17,12 +17,18 @@
     </div>
   </div>
 </div>
-<div mat-dialog-actions>
+<div mat-dialog-actions style="position:relative">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button mat-dialog-close *ngIf="item.selected" (click)="remove()">
-    Remove
-  </button>
   <button mat-button mat-dialog-close (click)="close()">
     {{ item.selected ? "Update" : "Add" }}
+  </button>
+  <button
+    mat-button
+    mat-dialog-close
+    *ngIf="item.selected"
+    (click)="remove()"
+    style="position: absolute; right:0; color: red"
+  >
+    Remove
   </button>
 </div>
