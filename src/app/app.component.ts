@@ -42,15 +42,7 @@ export class AppComponent implements OnInit {
       .subscribe(res => {
         console.log(res);
       });
-    this.walk = new FullWalkthrough();
-    this.walk.key = "TestKey";
-    this.walk.dateTime = "3-9-2019";
-    this.walk.rooms = [{
-      name: "Test room",
-      items: []
-    }];
 
-    this.saveWalkthroughService.saveWalkthrough(this.walk);
   }
 
 }
