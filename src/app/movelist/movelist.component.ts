@@ -10,7 +10,7 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class MovelistComponent implements OnInit {
   constructor(private savedWalkthroughService: SaveWalkthroughService, private activatedRoute: ActivatedRoute) {}
-  moveListInput = {};
+  public moveListInput: any = {};
 
   ngOnInit() {
     this.savedWalkthroughService
