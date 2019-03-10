@@ -22,11 +22,21 @@ export class FullWalkthrough {
     return w;
   }
 
-  public static getFirebase(fullWalkthrough: FullWalkthrough) {
+  public static fromOjbect(fullWalkthrough: FullWalkthrough) {
     var walk = {
       key: fullWalkthrough.key,
       dateTime: fullWalkthrough.dateTime,
       rooms: fullWalkthrough.rooms.map(room => FullRoom.fromObject(room))
+    };
+
+    return walk;
+  }
+  
+  public static getFirebase(fullWalk: FullWalkthrough) {
+    var walk = {
+      key: fullWalk.key,
+      dateTime: fullWalk.dateTime,
+      rooms: FullRoom.getFirebase(fullWalk.rooms)
     };
 
     return walk;
