@@ -23,7 +23,7 @@ export class MovelistComponent implements OnInit {
       this.activatedRoute.snapshot.paramMap.get("id")
     );
     this.walkthroughDoc.valueChanges().subscribe(walkthrough => {
-      this.moveListInput = FullWalkthrough.fromOjbect(walkthrough);    });
+      this.moveListInput = FullWalkthrough.fromOjbect(walkthrough);
     });
   }
 
