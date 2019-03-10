@@ -10,8 +10,8 @@ export class MoveListFullWalkthrough {
     var walk = {
       key: fullWalkthrough.key,
       dateTime: fullWalkthrough.dateTime,
-      smallItemRooms: fullWalkthrough.rooms.map(room => MoveListFullRoom.fromObject(room, true)),
-      largeItemRooms: fullWalkthrough.rooms.map(room => MoveListFullRoom.fromObject(room, false))
+      smallItemRooms: fullWalkthrough.rooms.map(room => MoveListFullRoom.fromObject(room, false)),
+      largeItemRooms: fullWalkthrough.rooms.map(room => MoveListFullRoom.fromObject(room, true))
     };
 
     return walk;
