@@ -6,11 +6,11 @@ export class FullWalkthrough {
   dateTime: any;
   rooms: FullRoom[];
 
-  fromFirebase(obj: any): FullWalkthrough {
+  static fromFirebase(obj: any): FullWalkthrough {
     const w = new FullWalkthrough();
 
     w.key = obj.key;
-    w.rooms = obj.rooms;
+    w.rooms = obj.rooms.map(room => FullRoom.fromObject(room));
 
     const s = obj.dateTime.seconds;
     const d = new Date(0);
@@ -22,11 +22,11 @@ export class FullWalkthrough {
     return w;
   }
 
-  public static getFirebase(fullWalk: FullWalkthrough) {
+  public static getFirebase(fullWalkthrough: FullWalkthrough) {
     var walk = {
-      key: fullWalk.key,
-      dateTime: fullWalk.dateTime,
-      rooms: FullRoom.getFirebase(fullWalk.rooms)
+      key: fullWalkthrough.key,
+      dateTime: fullWalkthrough.dateTime,
+      rooms: fullWalkthrough.rooms.map(room => FullRoom.fromObject(room))
     };
 
     return walk;

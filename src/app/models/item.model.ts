@@ -27,12 +27,15 @@ export class Item {
       return a.selected;
     });
   }
+  hasAttributes() {
+    return this.attributes.length > 0;
+  }
 
-  selectedAttributes() {
+  selectedAttributes(includeUnselected) {
     return _.reduce(
       this.attributes,
       (s: string, a: any) => {
-        if (a.selected) {
+        if (a.selected || includeUnselected) {
           if (s.trim().length > 0) {
             return s + ", " + a.name;
           }

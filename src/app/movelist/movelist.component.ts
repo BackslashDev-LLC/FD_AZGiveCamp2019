@@ -10,11 +10,8 @@ import { FullWalkthrough } from "../models/fullWalkthrough.model";
   styleUrls: ["./movelist.component.scss"]
 })
 export class MovelistComponent implements OnInit {
-  constructor(
-    private savedWalkthroughService: SaveWalkthroughService,
-    private activatedRoute: ActivatedRoute
-  ) {}
-  public moveListInput: any = {};
+  constructor(private savedWalkthroughService: SaveWalkthroughService, private activatedRoute: ActivatedRoute) {}
+  public moveListInput: FullWalkthrough;
   private walkthroughDoc: AngularFirestoreDocument<FullWalkthrough>;
 
   ngOnInit() {
@@ -22,7 +19,6 @@ export class MovelistComponent implements OnInit {
       this.activatedRoute.snapshot.paramMap.get("id")
     );
     this.walkthroughDoc.valueChanges().subscribe(walkthrough => {
-      this.moveListInput = walkthrough;
-    });
+      this.moveListInput = FullWalkthrough.fromFirebase(walkthrough);    });
   }
 }
