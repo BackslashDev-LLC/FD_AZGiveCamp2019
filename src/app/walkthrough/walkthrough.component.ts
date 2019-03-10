@@ -47,7 +47,7 @@ export class WalkthroughComponent implements OnInit {
       const loadPromise = new Promise((resolve, reject) => {
         this.saveWalkthroughService
           .getSavedWalkthroughById(walkthroughId)
-          .subscribe(next => {
+          .subscribe((next: any) => {
             this.started = true;
             this.familyName = next.key;
             newRooms = next.rooms;
@@ -103,7 +103,7 @@ export class WalkthroughComponent implements OnInit {
   }
 
   addRoom(room: any) {
-    let newRoom = JSON.parse(JSON.stringify(room));
+    let newRoom = FullRoom.fromObject(JSON.parse(JSON.stringify(room)));
     newRoom.items.map(item => (item.selected = false));
     this.rooms.splice(this.rooms.indexOf(room) + 1, 0, newRoom);
     this.openSnackBar(newRoom.name + " Added!", "");
