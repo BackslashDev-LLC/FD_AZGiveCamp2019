@@ -4,7 +4,7 @@
   </div>
 </div>
 <div class="head">
-  <p>{{ moveListInput?.key }} Move List</p>
+  <p>{{ moveListInput?.key }} Move List - Furniture Items</p>
   <p class="print">
     {{ deliveryInstruction }}
   </p>
@@ -32,8 +32,7 @@
       <tbody>
         <ng-container
           *ngFor="
-            let room of (furnitureRooms
-              | slice: 0:furnitureRooms.length / 2)
+            let room of (furnitureRooms | slice: 0:furnitureRooms.length / 2)
           "
         >
           <tr>
@@ -95,8 +94,7 @@
       <tbody>
         <ng-container
           *ngFor="
-            let room of (furnitureRooms
-              | slice: furnitureRooms.length / 2)
+            let room of (furnitureRooms | slice: furnitureRooms.length / 2)
           "
         >
           <tr>
@@ -146,131 +144,141 @@
     </table>
   </div>
 </div>
-<br/>
+<br />
+<div class="foot">
+  <p>Hi-lite items we don't have</p>
+  <p>If you substitute/change/add any item, please note</p>
+  <p>Make sure to enter quantities of items given</p>
+</div>
+<div class="page-break"></div>
+<div class="head">
+  <p>{{ moveListInput?.key }} Move List - Small Items</p>
+  <p class="print">
+    {{ deliveryInstruction }}
+  </p>
+</div>
 <div class="row" *ngIf="smallItemRooms">
   <div class="col-md-6 col-sm-12 print-table">
     <table>
       <thead>
-      <tr>
-        <th>Room - Small Items</th>
-        <th>QTY</th>
-        <th>PACK</th>
-        <th>TRUCK</th>
-      </tr>
+        <tr>
+          <th>Room - Small Items</th>
+          <th>QTY</th>
+          <th>PACK</th>
+          <th>TRUCK</th>
+        </tr>
       </thead>
       <tbody>
-      <ng-container
-        *ngFor="
-            let room of (smallItemRooms
-              | slice: 0:smallItemRooms.length / 2)
+        <ng-container
+          *ngFor="
+            let room of (smallItemRooms | slice: 0:smallItemRooms.length / 2)
           "
-      >
-        <tr>
-          <td style="font-weight:bold;">{{ room.name }}</td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr *ngFor="let item of room.items">
-          <td>
-            {{ item.rating !== 0 ? item.rating + " - " : "" }}{{ item.name
-            }}{{
-            item.comments || item.hasAttributes()
-            ? " (" +
-            item.comments +
-            (item.hasAttributes()
-            ? " - " + item.selectedAttributes(true)
-            : "") +
-            ")"
-            : ""
-            }}
-          </td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-      </ng-container>
+        >
+          <tr>
+            <td style="font-weight:bold;">{{ room.name }}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr *ngFor="let item of room.items">
+            <td>
+              {{ item.rating !== 0 ? item.rating + " - " : "" }}{{ item.name
+              }}{{
+                item.comments || item.hasAttributes()
+                  ? " (" +
+                    item.comments +
+                    (item.hasAttributes()
+                      ? " - " + item.selectedAttributes(true)
+                      : "") +
+                    ")"
+                  : ""
+              }}
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </ng-container>
       </tbody>
     </table>
   </div>
   <div class="col-md-6 col-sm-12 print-table">
     <table>
       <thead>
-      <tr>
-        <th>Room - Small Items</th>
-        <th>QTY</th>
-        <th>PACK</th>
-        <th>TRUCK</th>
-      </tr>
+        <tr>
+          <th>Room - Small Items</th>
+          <th>QTY</th>
+          <th>PACK</th>
+          <th>TRUCK</th>
+        </tr>
       </thead>
       <tbody>
-      <ng-container
-        *ngFor="
-            let room of (smallItemRooms
-              | slice: smallItemRooms.length / 2)
+        <ng-container
+          *ngFor="
+            let room of (smallItemRooms | slice: smallItemRooms.length / 2)
           "
-      >
-        <tr>
-          <td style="font-weight:bold;">{{ room.name }}</td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr *ngFor="let item of room.items">
-          <td>
-            {{ item.rating !== 0 ? item.rating + " - " : "" }}{{ item.name
-            }}{{
-            item.comments || item.hasAttributes()
-            ? " (" +
-            item.comments +
-            (item.hasAttributes()
-            ? " - " + item.selectedAttributes(true)
-            : "") +
-            ")"
-            : ""
-            }}
-          </td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-      </ng-container>
+        >
+          <tr>
+            <td style="font-weight:bold;">{{ room.name }}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr *ngFor="let item of room.items">
+            <td>
+              {{ item.rating !== 0 ? item.rating + " - " : "" }}{{ item.name
+              }}{{
+                item.comments || item.hasAttributes()
+                  ? " (" +
+                    item.comments +
+                    (item.hasAttributes()
+                      ? " - " + item.selectedAttributes(true)
+                      : "") +
+                    ")"
+                  : ""
+              }}
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </ng-container>
       </tbody>
     </table>
   </div>

@@ -61,4 +61,8 @@ table {
   td {
     page-break-inside: avoid;
   }
+
+  .page-break {
+    page-break-before: always;
+  }
 }
