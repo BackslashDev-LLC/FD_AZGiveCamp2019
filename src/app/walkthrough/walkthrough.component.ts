@@ -41,6 +41,7 @@ export class WalkthroughComponent implements OnInit {
         .then((result: FullWalkthrough) => {
           this.rooms = result.rooms;
           resolve();
+          console.log(result);
         });
     });
     allPromise.push(mainPromise);
@@ -135,7 +136,8 @@ export class WalkthroughComponent implements OnInit {
                 a.attributes.filter(b => b.selected).map(b => b.name),
                 a.isRankable,
                 a.comments,
-                a.rating
+                a.rating,
+                a.isFurniture
               )
           );
         return room;

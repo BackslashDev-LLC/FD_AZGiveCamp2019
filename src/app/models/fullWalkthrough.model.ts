@@ -1,4 +1,22 @@
-import { FullRoom } from "./fullRoom.model";
+import { FullRoom, MoveListFullRoom } from "./fullRoom.model";
+
+export class MoveListFullWalkthrough {
+  key: string;
+  dateTime: any;
+  smallItemRooms: MoveListFullRoom[];
+  largeItemRooms: MoveListFullRoom[];
+
+  public static fromObjectMoveList(fullWalkthrough: FullWalkthrough): MoveListFullWalkthrough{
+    var walk = {
+      key: fullWalkthrough.key,
+      dateTime: fullWalkthrough.dateTime,
+      smallItemRooms: fullWalkthrough.rooms.map(room => MoveListFullRoom.fromObject(room, true)),
+      largeItemRooms: fullWalkthrough.rooms.map(room => MoveListFullRoom.fromObject(room, false))
+    };
+
+    return walk;
+  }
+}
 
 export class FullWalkthrough {
   key: string;
@@ -21,6 +39,7 @@ export class FullWalkthrough {
     return w;
   }
 
+
   public static fromOjbect(fullWalkthrough: FullWalkthrough) {
     var walk = {
       key: fullWalkthrough.key,
@@ -30,7 +49,7 @@ export class FullWalkthrough {
 
     return walk;
   }
-  
+
   public static getFirebase(fullWalk: FullWalkthrough) {
     var walk = {
       key: fullWalk.key,
