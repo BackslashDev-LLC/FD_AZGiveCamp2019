@@ -56,7 +56,13 @@ table {
   }
 
   table,
-  pre {
+  pre,
+  tr,
+  td {
     page-break-inside: avoid;
+  }
+
+  .page-break {
+    page-break-before: always;
   }
 }
