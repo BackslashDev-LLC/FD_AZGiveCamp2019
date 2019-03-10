@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "../auth/auth.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "fd-login",
@@ -11,8 +12,12 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
 
-  constructor(public authService: AuthService) {}
-  ngOnInit() {}
+  constructor(public authService: AuthService, private _router: Router) {}
+  ngOnInit() {
+    if (this.authService.isLoggedIn) {
+      this._router.navigate([""]);
+    }
+  }
 
   signIn() {
     this.working = true;
