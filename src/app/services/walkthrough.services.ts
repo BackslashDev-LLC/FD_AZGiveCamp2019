@@ -42,7 +42,7 @@ export class WalkthroughService {
                       });
                     });
                   })
-                ).then(resItems =>
+                ).then(resItems => {
                   resItems.forEach((resItem: any) => {
                     if (resItem) {
                       wtRoom.items.push(
@@ -55,9 +55,9 @@ export class WalkthroughService {
                         )
                       );
                     }
-                  })
-                );
-                resolve(wtRoom);
+                  });
+                  resolve(wtRoom);
+                });
               });
             });
           })

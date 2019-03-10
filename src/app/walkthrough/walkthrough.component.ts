@@ -32,12 +32,59 @@ export class WalkthroughComponent implements OnInit {
 
   ngOnInit() {
     const walkthroughId = this._route.snapshot.params["id"];
-    this.walkthroughService
-      .getWalkthroughSource()
-      .then((result: FullWalkthrough) => {
-        this.familyName = result.key;
-        this.rooms = result.rooms;
+    const allPromise: Promise<any>[] = [];
+    const mainPromise = new Promise((resolve, reject) => {
+      this.walkthroughService
+        .getWalkthroughSource()
+        .then((result: FullWalkthrough) => {
+          this.rooms = result.rooms;
+          resolve();
+        });
+    });
+    allPromise.push(mainPromise);
+    if (walkthroughId) {
+      let newRooms = [];
+      const loadPromise = new Promise((resolve, reject) => {
+        this.saveWalkthroughService
+          .getSavedWalkthroughById(walkthroughId)
+          .subscribe(next => {
+            this.started = true;
+            this.familyName = next.key;
+            newRooms = next.rooms;
+            resolve();
+          });
       });
+      allPromise.push(loadPromise);
+      Promise.all(allPromise).then(() => {
+        newRooms.forEach(a => {
+          const foundRoom = this.rooms.find(b => b.name === a.name);
+          if (!foundRoom) {
+            this.rooms.push(a);
+            return;
+          }
+          a.items.forEach(b => {
+            const foundItem = foundRoom.items.find(c => b.name === c.name);
+            if (foundItem) {
+              foundItem.rating = b.rating;
+              b.attributes.forEach(c => {
+                const foundAttribute = foundItem.attributes.find(
+                  d => d.name === c
+                );
+                if (foundAttribute) {
+                  foundAttribute.selected = true;
+                }
+              });
+              foundItem.comments = b.comments;
+              foundItem.isRankable = b.isRankable;
+              foundItem.rating = b.rating;
+              foundItem.selected = true;
+            } else {
+              foundRoom.items.push(b);
+            }
+          });
+        });
+      });
+    }
   }
 
   openSnackBar(message: string, action: string) {
@@ -47,8 +94,6 @@ export class WalkthroughComponent implements OnInit {
   }
 
   openDetail(w: Item) {
-    //w.selected = true;
-
     const dialogRef = this.dialog.open(DetailComponent, {
       width: "600px",
       data: {
