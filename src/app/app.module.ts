@@ -1,6 +1,13 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { MatTableModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from "@angular/material";
+import {
+  MatTableModule,
+  MatToolbarModule,
+  MatButtonModule,
+  MatSidenavModule,
+  MatIconModule,
+  MatListModule
+} from "@angular/material";
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 
@@ -23,8 +30,7 @@ import { DetailComponent } from "./walkthrough/_/detail/detail.component";
 import { WalkthroughService } from "./services/walkthrough.services";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AuthService } from "./auth/auth.service";
-import { AppLayoutComponent } from './app-layout/app-layout.component';
-import { LayoutModule } from '@angular/cdk/layout';
+import { LayoutModule } from "@angular/cdk/layout";
 
 @NgModule({
   declarations: [
@@ -33,8 +39,7 @@ import { LayoutModule } from '@angular/cdk/layout';
     WalkthroughComponent,
     MovelistComponent,
     HomeComponent,
-    DetailComponent,
-    AppLayoutComponent
+    DetailComponent
   ],
   imports: [
     BrowserModule,
