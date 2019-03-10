@@ -27,17 +27,17 @@
       [class.selected]="item.selected"
       [class.last]="i === room.items.length - 1"
     >
-      <h4 mat-line>{{ item.name }}</h4>
+      <h4 mat-line>{{ item.selected && item.rating && item.rating!== 0 ? item.rating + " - " + item.name : item.name }}</h4>
       <mat-icon *ngIf="item.selected" class="selected">check_circle</mat-icon>
       <p
         matLine
         *ngIf="
           item.selected &&
           (item.hasAttributesSelected() ||
-            (item.comments && item.comments.length > 0) || item.rating !== 0)
+            (item.comments && item.comments.length > 0))
         "
       >
-        {{ item.comments }} {{ item.selectedAttributes() }} {{item.rating}}
+        {{ item.comments }} {{ item.selectedAttributes() }}
       </p>
     </mat-list-item>
   </ng-container>
