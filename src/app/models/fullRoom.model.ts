@@ -15,7 +15,15 @@ export class FullRoom {
     const fr = new FullRoom(obj.name, obj.type);
 
     fr.items = _.map(obj.items, (i: any) => {
-      return new Item(i.name, i.attributes, i.isRankable, i.comments, i.rating);
+      return new Item(
+        i.name,
+        _.map(i.attributes, (a: any) => {
+          return a.name;
+        }),
+        i.isRankable,
+        i.comments,
+        i.rating
+      );
     });
 
     return fr;

@@ -104,7 +104,6 @@ export class WalkthroughComponent implements OnInit {
 
   addRoom(room: any) {
     let newRoom = FullRoom.fromObject(JSON.parse(JSON.stringify(room)));
-    newRoom.items.map(item => (item.selected = false));
     this.rooms.splice(this.rooms.indexOf(room) + 1, 0, newRoom);
     this.openSnackBar(newRoom.name + " Added!", "");
   }
