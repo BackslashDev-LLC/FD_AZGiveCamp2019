@@ -18,7 +18,7 @@ export class FullRoom {
       return new Item(
         i.name,
         _.map(i.attributes, (a: any) => {
-          return a.name;
+          return a.name || a;
         }),
         i.isRankable,
         i.comments,
