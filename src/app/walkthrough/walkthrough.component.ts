@@ -9,6 +9,7 @@ import { SaveWalkthroughService } from "../services/save-walkthrough.service";
 import { Router } from "@angular/router";
 import { RouterModule, ActivatedRoute } from "@angular/router";
 import { Item } from "../models/item.model";
+import { AngularFirestoreDocument } from "@angular/fire/firestore";
 
 @Component({
   selector: "fd-walkthrough",
@@ -18,6 +19,7 @@ import { Item } from "../models/item.model";
 export class WalkthroughComponent implements OnInit {
   familyName: string;
   started: boolean;
+  private walkthroughDoc: AngularFirestoreDocument<FullWalkthrough>;
 
   rooms: FullRoom[] = [];
 
@@ -45,14 +47,15 @@ export class WalkthroughComponent implements OnInit {
     if (walkthroughId) {
       let newRooms = [];
       const loadPromise = new Promise((resolve, reject) => {
-        this.saveWalkthroughService
-          .getSavedWalkthroughById(walkthroughId)
-          .subscribe((next: any) => {
-            this.started = true;
-            this.familyName = next.key;
-            newRooms = next.rooms;
-            resolve();
-          });
+        this.walkthroughDoc = this.saveWalkthroughService.getSavedWalkthroughById(
+          walkthroughId
+        );
+        this.walkthroughDoc.valueChanges().subscribe((next: any) => {
+          this.started = true;
+          this.familyName = next.key;
+          newRooms = next.rooms;
+          resolve();
+        });
       });
       allPromise.push(loadPromise);
       Promise.all(allPromise).then(() => {
@@ -135,6 +138,7 @@ export class WalkthroughComponent implements OnInit {
       });
     completedWalkthrough.dateTime = new Date();
     console.log(completedWalkthrough);
+    if (this.walkthroughDoc) this.walkthroughDoc.delete();
     this.saveWalkthroughService.saveWalkthrough(completedWalkthrough);
     this._router.navigate([""]);
   }

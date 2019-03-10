@@ -26,8 +26,6 @@ export class SaveWalkthroughService {
   }
 
   public getSavedWalkthroughById(id: string) {
-    return this.afs
-      .doc<FullWalkthrough>(this.savedWalkthrough + "/" + id)
-      .valueChanges();
+    return this.afs.doc<FullWalkthrough>(this.savedWalkthrough + "/" + id);
   }
 }
