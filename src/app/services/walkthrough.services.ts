@@ -15,6 +15,7 @@ export interface Walkthrough {
 
 export interface Room {
   name: string;
+  type: string;
   items: DocumentReference[];
 }
 
@@ -33,7 +34,7 @@ export class WalkthroughService {
                   resolve();
                   return;
                 }
-                var wtRoom: FullRoom = new FullRoom(rm.name);
+                var wtRoom: FullRoom = new FullRoom(rm.name, rm.type);
                 Promise.all(
                   rm.items.map(itm => {
                     return new Promise((itmResolve, itmReject) => {

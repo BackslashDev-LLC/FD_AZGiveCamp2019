@@ -118,7 +118,7 @@ export class WalkthroughComponent implements OnInit {
     completedWalkthrough.rooms = this.rooms
       .filter(a => a.items.some(b => b.selected))
       .map(a => {
-        const room = new FullRoom(a.name);
+        const room = new FullRoom(a.name, a.type);
         room.items = a.items
           .filter(a => a.selected)
           .map(
