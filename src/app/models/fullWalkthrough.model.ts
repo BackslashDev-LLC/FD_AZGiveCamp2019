@@ -1,6 +1,5 @@
 import { FullRoom } from "./fullRoom.model";
 
-
 export class FullWalkthrough {
   key: string;
   dateTime: any;
@@ -8,7 +7,7 @@ export class FullWalkthrough {
 
   static fromFirebase(obj: any): FullWalkthrough {
     const w = new FullWalkthrough();
-
+    if (!obj) return w;
     w.key = obj.key;
     w.rooms = obj.rooms.map(room => FullRoom.fromObject(room));
 

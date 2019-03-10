@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { SaveWalkthroughService } from "../services/save-walkthrough.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { AngularFirestoreDocument } from "@angular/fire/firestore";
 import { FullWalkthrough } from "../models/fullWalkthrough.model";
 
@@ -10,7 +10,11 @@ import { FullWalkthrough } from "../models/fullWalkthrough.model";
   styleUrls: ["./movelist.component.scss"]
 })
 export class MovelistComponent implements OnInit {
-  constructor(private savedWalkthroughService: SaveWalkthroughService, private activatedRoute: ActivatedRoute) {}
+  constructor(
+    private _router: Router,
+    private savedWalkthroughService: SaveWalkthroughService,
+    private activatedRoute: ActivatedRoute
+  ) {}
   public moveListInput: FullWalkthrough;
   private walkthroughDoc: AngularFirestoreDocument<FullWalkthrough>;
 
@@ -19,6 +23,14 @@ export class MovelistComponent implements OnInit {
       this.activatedRoute.snapshot.paramMap.get("id")
     );
     this.walkthroughDoc.valueChanges().subscribe(walkthrough => {
-      this.moveListInput = FullWalkthrough.fromOjbect(walkthrough);    });
+      this.moveListInput = FullWalkthrough.fromOjbect(walkthrough);
+    });
+  }
+
+  delete() {
+    if (window.confirm("Are you sure you want to delete?")) {
+      this.walkthroughDoc.delete();
+      this._router.navigate([""]);
+    }
   }
 }
