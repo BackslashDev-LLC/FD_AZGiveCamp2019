@@ -60,10 +60,15 @@ export class WalkthroughComponent implements OnInit {
       allPromise.push(loadPromise);
       Promise.all(allPromise).then(() => {
         newRooms.forEach(a => {
-          const foundRoom = this.rooms.find(b => b.name === a.name);
+          let foundRoom = this.rooms.find(b => b.name === a.name);
           if (!foundRoom) {
-            this.rooms.push(a);
-            return;
+            foundRoom = FullRoom.fromObject(
+              JSON.parse(
+                JSON.stringify(this.rooms.find(b => b.type === a.type))
+              )
+            );
+            foundRoom.name = a.name;
+            this.rooms.push(foundRoom);
           }
           a.items.forEach(b => {
             const foundItem = foundRoom.items.find(c => b.name === c.name);
