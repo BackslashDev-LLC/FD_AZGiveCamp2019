@@ -2,7 +2,7 @@ import { Item } from "./item.model";
 import * as _ from "lodash";
 
 export class MoveListFullRoom {
-  constructor(name: string, type:string, isFurnitureRoom: boolean){
+  constructor(name: string, type: string, isFurnitureRoom: boolean) {
     this.name = name;
     this.type = type;
     this.isFurnitureRoom = isFurnitureRoom;
@@ -14,10 +14,9 @@ export class MoveListFullRoom {
 
   public static fromObject(obj: any, largeItem: boolean): MoveListFullRoom {
     const fr = new MoveListFullRoom(obj.name, obj.type, largeItem);
-    console.log(obj);
-
-    const items = _.filter(obj.items, function(o){return (o.isFurniture && largeItem) || (!o.isFurniture && !largeItem)});
-    console.log(items);
+    const items = _.filter(obj.items, function(o) {
+      return (o.isFurniture && largeItem) || (!o.isFurniture && !largeItem);
+    });
 
     if (!items || items.length <= 0) return;
 
@@ -33,7 +32,6 @@ export class MoveListFullRoom {
         i.isFurniture
       );
     });
-
 
     return fr;
   }

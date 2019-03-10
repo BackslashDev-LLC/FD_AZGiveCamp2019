@@ -41,7 +41,6 @@ export class WalkthroughComponent implements OnInit {
         .then((result: FullWalkthrough) => {
           this.rooms = result.rooms;
           resolve();
-          console.log(result);
         });
     });
     allPromise.push(mainPromise);
@@ -52,6 +51,7 @@ export class WalkthroughComponent implements OnInit {
           walkthroughId
         );
         this.walkthroughDoc.valueChanges().subscribe((next: any) => {
+          if (!next) return;
           this.started = true;
           this.familyName = next.key;
           newRooms = next.rooms;
@@ -143,7 +143,6 @@ export class WalkthroughComponent implements OnInit {
         return room;
       });
     completedWalkthrough.dateTime = new Date();
-    console.log(completedWalkthrough);
     if (this.walkthroughDoc) this.walkthroughDoc.delete();
     this.saveWalkthroughService.saveWalkthrough(completedWalkthrough);
     this._router.navigate([""]);

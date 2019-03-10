@@ -16,8 +16,6 @@ export class SaveWalkthroughService {
 
   public saveWalkthrough(walkthrough: FullWalkthrough) {
     var walk = FullWalkthrough.getFirebase(walkthrough);
-    console.log(walk);
-
     this.afs.collection(this.savedWalkthrough).add(walk);
   }
 
