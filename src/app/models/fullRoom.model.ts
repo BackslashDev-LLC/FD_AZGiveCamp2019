@@ -1,6 +1,44 @@
 import { Item } from "./item.model";
 import * as _ from "lodash";
 
+export class MoveListFullRoom {
+  constructor(name: string, type:string, isFurnitureRoom: boolean){
+    this.name = name;
+    this.type = type;
+    this.isFurnitureRoom = isFurnitureRoom;
+  }
+  name: string;
+  items: Item[];
+  type: string;
+  isFurnitureRoom: boolean;
+
+  public static fromObject(obj: any, largeItem: boolean): MoveListFullRoom {
+    const fr = new MoveListFullRoom(obj.name, obj.type, largeItem);
+    console.log(obj);
+
+    const items = _.filter(obj.items, function(o){return (o.isFurniture && largeItem) || (!o.isFurniture && !largeItem)});
+    console.log(items);
+
+    if (!items || items.length <= 0) return;
+
+    fr.items = _.map(items, (i: any) => {
+      return new Item(
+        i.name,
+        _.map(i.attributes, (a: any) => {
+          return a.name || a;
+        }),
+        i.isRankable,
+        i.comments,
+        i.rating,
+        i.isFurniture
+      );
+    });
+
+
+    return fr;
+  }
+}
+
 export class FullRoom {
   public constructor(name: string, type: string) {
     this.type = type;
@@ -22,7 +60,8 @@ export class FullRoom {
         }),
         i.isRankable,
         i.comments,
-        i.rating
+        i.rating,
+        i.isFurniture
       );
     });
 

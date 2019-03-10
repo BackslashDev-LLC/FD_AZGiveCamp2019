@@ -52,7 +52,8 @@ export class WalkthroughService {
                           resItem.attributes,
                           resItem.isRankable,
                           resItem.comments,
-                          resItem.rating
+                          resItem.rating,
+                          resItem.isFurniture
                         )
                       );
                     }

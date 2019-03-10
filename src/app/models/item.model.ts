@@ -7,13 +7,15 @@ export class Item {
     attributes: string[],
     isRankable: boolean,
     comments: string,
-    rating: number
+    rating: number,
+    isFurniture: boolean
   ) {
     this.name = name;
     this.attributes = (attributes || []).map(a => new ItemAttribute(a));
     this.isRankable = isRankable;
     this.comments = comments;
     this.rating = rating;
+    this.isFurniture = isFurniture;
   }
   name: string;
   attributes: ItemAttribute[];
@@ -21,6 +23,7 @@ export class Item {
   comments: string;
   rating: number;
   selected: boolean;
+  isFurniture: boolean;
 
   hasAttributesSelected() {
     return _.some(this.attributes, (a: any) => {
@@ -58,7 +61,8 @@ export class Item {
         attributes: tempItem.attributes.map(a => a.name),
         isRankable: tempItem.isRankable,
         rating: tempItem.rating || 0,
-        comments: tempItem.comments
+        comments: tempItem.comments,
+        isFurniture: tempItem.isFurniture
       };
       items.push(item);
     }
