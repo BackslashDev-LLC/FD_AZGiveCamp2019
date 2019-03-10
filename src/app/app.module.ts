@@ -1,6 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { MatTableModule } from "@angular/material";
+import { MatTableModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from "@angular/material";
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 
@@ -23,6 +23,8 @@ import { DetailComponent } from "./walkthrough/_/detail/detail.component";
 import { WalkthroughService } from "./services/walkthrough.services";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AuthService } from "./auth/auth.service";
+import { AppLayoutComponent } from './app-layout/app-layout.component';
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { AuthService } from "./auth/auth.service";
     WalkthroughComponent,
     MovelistComponent,
     HomeComponent,
-    DetailComponent
+    DetailComponent,
+    AppLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,13 @@ import { AuthService } from "./auth/auth.service";
     MatTableModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule.enablePersistence(),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule
   ],
   providers: [WalkthroughService, AuthService],
   bootstrap: [AppComponent],

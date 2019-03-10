@@ -1,28 +1,75 @@
-<mat-toolbar color="primary" *ngIf="authService.isLoggedIn">
-  <mat-toolbar-row>
-    <span>Furnishing Dignity</span>
-
-    <button mat-button (click)="goHome()">Home</button>
-    <button mat-button (click)="startWalkthrough()">Start Walkthrough</button>
-
-    <div class="right">
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport="true"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)"
+    [class.hide]="!(isHandset$ | async)"
+  >
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="">Home</a>
+      <a mat-list-item routerLink="/walkthrough">Start Walkthrough</a>
       <a
-        mat-button
-        *ngIf="authService.isLoggedIn"
+        mat-list-item
         href="https://console.firebase.google.com/u/1/project/helpcamp2019/authentication/users"
         target="_blank"
         >Manage Users</a
       >
-      <button
-        *ngIf="authService.isLoggedIn"
-        mat-button
-        (click)="authService.logout()"
+      <a mat-list-item href="javascript:void(0);" (click)="authService.logout()"
+        >Log Out</a
       >
-        Logout
-      </button>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" *ngIf="authService.isLoggedIn">
+      <mat-toolbar-row>
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="(isHandset$ | async)"
+          style="color:white;"
+        >
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+
+        <span>Furnishing Dignity</span>
+
+        <button *ngIf="!(isHandset$ | async)" mat-button (click)="goHome()">
+          Home
+        </button>
+        <button
+          *ngIf="!(isHandset$ | async)"
+          mat-button
+          (click)="startWalkthrough()"
+        >
+          Start Walkthrough
+        </button>
+
+        <div *ngIf="!(isHandset$ | async)" class="right">
+          <a
+            mat-button
+            *ngIf="authService.isLoggedIn"
+            href="https://console.firebase.google.com/u/1/project/helpcamp2019/authentication/users"
+            target="_blank"
+            >Manage Users</a
+          >
+          <button
+            *ngIf="authService.isLoggedIn"
+            mat-button
+            (click)="authService.logout()"
+          >
+            Logout
+          </button>
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <div class="container" style="padding-top:2em;">
+      <router-outlet></router-outlet>
     </div>
-  </mat-toolbar-row>
-</mat-toolbar>
-<div class="container" style="padding-top:2em;">
-  <router-outlet></router-outlet>
-</div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
