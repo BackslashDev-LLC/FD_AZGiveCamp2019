@@ -10,6 +10,8 @@ import { FullWalkthrough } from "../models/fullWalkthrough.model";
   styleUrls: ["./movelist.component.scss"]
 })
 export class MovelistComponent implements OnInit {
+  deliveryInstruction: string;
+
   constructor(
     private _router: Router,
     private savedWalkthroughService: SaveWalkthroughService,

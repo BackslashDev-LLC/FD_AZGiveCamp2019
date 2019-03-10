@@ -1,3 +1,6 @@
+@import "../../assets/styles/imports/mixins";
+@import "../../assets/styles/imports/variables";
+
 table {
   border-collapse: collapse;
   width: 100%;
@@ -28,4 +31,32 @@ table {
 .foot {
   text-align: left;
   margin-top: 0.5em;
+}
+
+.print {
+  display: none;
+}
+
+.delete {
+  @include linearGradient(lighten(#ff4136, 10%), #ff4136);
+  color: white;
+}
+
+@media print {
+  .print {
+    display: inline-block;
+  }
+
+  .hide-print {
+    display: none;
+  }
+
+  .print-table {
+    width: 50%;
+  }
+
+  table,
+  pre {
+    page-break-inside: avoid;
+  }
 }

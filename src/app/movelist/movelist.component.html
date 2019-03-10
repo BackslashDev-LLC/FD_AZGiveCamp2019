@@ -1,10 +1,25 @@
-<div><button (click)="delete()">Delete</button></div>
+<div class="row hide-print">
+  <div class="col-12" style="text-align: right;">
+    <button mat-flat-button class="delete" (click)="delete()">Delete</button>
+  </div>
+</div>
 <div class="head">
   <p>{{ moveListInput?.key }} Move List</p>
-  <p><input type="text" /></p>
+  <p class="print">
+    {{ deliveryInstruction }}
+  </p>
 </div>
+<div class="row hide-print">
+  <div class="col-12">
+    <bsd-text-input
+      [(ngModel)]="deliveryInstruction"
+      label="Delivery Instructions"
+    ></bsd-text-input>
+  </div>
+</div>
+
 <div class="row">
-  <div class="col-md-6 col-sm-12">
+  <div class="col-md-6 col-sm-12 print-table">
     <table>
       <thead>
         <tr>
@@ -67,7 +82,7 @@
       </tbody>
     </table>
   </div>
-  <div class="col-md-6 col-sm-12">
+  <div class="col-md-6 col-sm-12 print-table">
     <table>
       <thead>
         <tr>

@@ -14,32 +14,34 @@
     </div>
   </div>
   <div class="row">
-    <table mat-table [dataSource]="searchResults">
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Name</th>
-        <td mat-cell *matCellDef="let client">
-          {{ client.key }}
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="date">
-        <th mat-header-cell *matHeaderCellDef>Walkthrough Date</th>
-        <td mat-cell *matCellDef="let client">
-          {{ client.dateTime | date: "MMM d, y h:mm a" }}
-        </td>
-      </ng-container>
+    <div class="col-12">
+      <table mat-table [dataSource]="searchResults">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let client">
+            {{ client.key }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef>Walkthrough Date</th>
+          <td mat-cell *matCellDef="let client">
+            {{ client.dateTime | date: "MMM d, y h:mm a" }}
+          </td>
+        </ng-container>
 
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef>Actions</th>
-        <td mat-cell *matCellDef="let client" style="text-align: right;">
-          <button mat-button (click)="goToMoveList(client)">Move List</button>
-          <button mat-button (click)="goToWalkthrough(client)">
-            Walkthrough
-          </button>
-        </td>
-      </ng-container>
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let client" style="text-align: right;">
+            <button mat-button (click)="goToMoveList(client)">Move List</button>
+            <button mat-button (click)="goToWalkthrough(client)">
+              Walkthrough
+            </button>
+          </td>
+        </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
   </div>
 </div>

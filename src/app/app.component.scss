@@ -30,3 +30,13 @@
 .hide {
   display: none;
 }
+
+@media print {
+  .mat-toolbar {
+    display: none;
+  }
+
+  .sidenav {
+    display: none;
+  }
+}
